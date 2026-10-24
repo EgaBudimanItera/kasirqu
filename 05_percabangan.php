@@ -68,12 +68,69 @@ switch ($hari) {
     <p class="lead">Seperti di game: "kalau HP habis, maka kamu kalah". PHP juga bisa begitu.</p>
 
     <div class="card">
-      <h2>Pola dasar if / else</h2>
-      <pre>if (kondisi) {
-    // dikerjakan kalau kondisi BENAR
+      <h2>Bentuk Penulisan: if, if...else, if...elseif...else</h2>
+      <p><strong>1) if saja</strong></p>
+      <pre>&lt;?php
+$umur = 17;
+if ($umur &gt;= 17) {
+    echo "Kamu sudah boleh mengikuti ujian SIM.";
+}
+?&gt;</pre>
+
+      <p><strong>2) if ... else</strong></p>
+      <pre>&lt;?php
+$nilai = 65;
+if ($nilai &gt;= 75) {
+    echo "LULUS";
 } else {
-    // dikerjakan kalau kondisi SALAH
-}</pre>
+    echo "TIDAK LULUS";
+}
+?&gt;</pre>
+
+      <p><strong>3) if ... elseif ... else</strong></p>
+      <pre>&lt;?php
+$nilai = 78;
+if ($nilai &gt;= 90) {
+    echo "A";
+} elseif ($nilai &gt;= 80) {
+    echo "B";
+} elseif ($nilai &gt;= 70) {
+    echo "C";
+} else {
+    echo "D";
+}
+?&gt;</pre>
+      <p><span class="pill">Tips</span> Kondisi pakai tanda perbandingan: <code>&gt;=</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>==</code>, <code>!=</code></p>
+    </div>
+
+    <div class="card">
+      <h2>Bentuk Penulisan: switch</h2>
+      <p><code>switch</code> cocok dipakai kalau kita punya <strong>banyak pilihan tetap</strong>.</p>
+      <pre>&lt;?php
+$hari = "Senin";
+
+switch ($hari) {
+    case "Senin":
+        echo "Awal pekan, semangat!";
+        break;
+    case "Selasa":
+        echo "Jalanin aja pelan-pelan.";
+        break;
+    case "Rabu":
+        echo "Pertengahan pekan, tetap fokus!";
+        break;
+    case "Kamis":
+        echo "Semangat, bentar lagi Jumat!";
+        break;
+    case "Jumat":
+        echo "Hampir libur!";
+        break;
+    default:
+        echo "Hari biasa.";
+        break;
+}
+?&gt;</pre>
+      <p><span class="pill no">Penting</span> Jangan lupa <code>break;</code> biar program tidak lanjut ke <code>case</code> berikutnya.</p>
     </div>
 
     <div class="card">
@@ -95,7 +152,7 @@ switch ($hari) {
       <h2>Contoh 3 — switch (hari: <?php echo $hari; ?>)</h2>
       <p><?php echo $status; ?></p>
     </div>
-
+        
     <div class="task">
       <h3>// TUGAS</h3>
       <ol>

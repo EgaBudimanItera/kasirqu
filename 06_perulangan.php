@@ -36,6 +36,42 @@ $hitung_mundur = 5;
     <p class="lead">Dengan 3 baris kode, PHP bisa mencetak 100 baris untukmu.</p>
 
     <div class="card">
+      <h2>Bentuk Penulisan Perulangan</h2>
+      <p><strong>1) for</strong> (digunakan kalau sudah tahu berapa kali diulang)</p>
+      <pre>&lt;?php
+for ($i = 1; $i &lt;= 5; $i++) {
+    echo "Angka ke-" . $i . "&lt;br&gt;";
+}
+?&gt;</pre>
+
+      <p><strong>2) while</strong> (diulang SELAMA kondisi masih BENAR)</p>
+      <pre>&lt;?php
+$n = 1;
+while ($n &lt;= 5) {
+    echo "Perulangan ke-" . $n . "&lt;br&gt;";
+    $n++; // wajib supaya $n bertambah
+}
+?&gt;</pre>
+
+      <p><strong>3) do...while</strong> (minimal dijalankan 1 kali)</p>
+      <pre>&lt;?php
+$x = 10;
+do {
+    echo "Nilai: " . $x . "&lt;br&gt;";
+    $x++;
+} while ($x &lt;= 12);
+?&gt;</pre>
+
+      <p><strong>4) foreach</strong> (untuk mengulang SETIAP isi array)</p>
+      <pre>&lt;?php
+$buah = ["Apel", "Jeruk", "Mangga"];
+foreach ($buah as $b) {
+    echo $b . "&lt;br&gt;";
+}
+?&gt;</pre>
+    </div>
+
+    <div class="card">
       <h2>1. for &mdash; tahu pasti berapa kali</h2>
       <p>Cocok untuk membuat tabel perkalian 3:</p>
       <table>
@@ -46,7 +82,7 @@ $hitung_mundur = 5;
         }
         ?>
       </table>
-      <pre>for ($i = 1; $i &lt;= 5; $i++) { ... }</pre>
+      <pre>for ($awal; $kondisi; $penambahan/pengurangan) { ... }</pre>
     </div>
 
     <div class="card">
@@ -66,7 +102,24 @@ $hitung_mundur = 5;
     </div>
 
     <div class="card">
-      <h2>3. foreach &mdash; untuk SETIAP isi array</h2>
+      <h2>3. do...while &mdash; dijalankan minimal 1 kali</h2>
+      <p>Perhatikan, meski kondisinya salah, blok tetap dijalankan 1x:</p>
+      <p>
+        <?php
+        $x = 15;
+        do {
+            echo "Dijalankan, nilai \$x = " . $x . "<br>";
+            $x++;
+        } while ($x <= 12);
+        ?>
+      </p>
+      <pre>do {
+    // dijalankan dulu minimal 1 kali
+} while ($kondisi);</pre>
+    </div>
+
+    <div class="card">
+      <h2>4. foreach &mdash; untuk SETIAP isi array</h2>
       <p>Isi keranjang belanja:</p>
       <table>
         <tr><th>No</th><th>Nama barang</th></tr>
@@ -78,6 +131,7 @@ $hitung_mundur = 5;
         }
         ?>
       </table>
+      <p><span class="pill">Tips</span> Bisa juga pakai kunci array: <code>foreach ($array as $kunci => $nilai)</code></p>
     </div>
 
     <div class="task">

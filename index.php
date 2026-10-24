@@ -4,7 +4,7 @@
 // HALAMAN DEPAN aplikasi latihan PHP dasar.
 //
 // Tujuan:
-//   - Menjadi "pintu masuk" ke semua latihan (Latihan 1-8).
+//   - Menjadi "pintu masuk" ke semua latihan (Latihan 1-9).
 //   - Menunjukkan contoh nyata ARRAY (daftar latihan) langsung dipakai
 //     untuk menyusun menu. Jadi array bukan cuma teori.
 //
@@ -24,6 +24,8 @@ $latihan = [
     6 => ["file" => "06_perulangan.php",  "judul" => "Perulangan",          "desc" => "Mengulang pekerjaan dengan for, while, foreach."],
     7 => ["file" => "07_mesin_kasir.php", "judul" => "Mesin Kasir Digital", "desc" => "Gabungan semuanya: hitung struk belanja otomatis."],
     8 => ["file" => "08_latihan_bebas.php","judul" => "Latihan Bebas",      "desc" => "Tantangan mandiri: bikin programmu sendiri."],
+    9 => ["file" => "09_css_dasar.php",   "judul" => "CSS Dasar",           "desc" => "Mempercantik HTML: kenali selector class (.) dan id (#)."],
+    10 => ["file" => "10_css_bootstrap.php","judul" => "CSS dengan Bootstrap","desc" => "Pakai CSS siap pakai: card, tombol, grid, dan modal."],
 ];
 
 $jumlah = count($latihan); // count() = menghitung banyaknya isi array.

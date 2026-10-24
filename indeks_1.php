@@ -9,7 +9,9 @@
     <br>line
     <p>paragraf</p>
     <?php
+    
     echo "hello world";
+    //menampilkan teks ke layar
     var_dump("hello world");
     print_r("hello world");
     $wadah1 = "Ember";
@@ -21,6 +23,9 @@
     echo $hasil;
     var_dump($hasil);
     print_r($hasil);
+    ?>
+    <hr>
+    <?php
     ?>
 </body>
 </html>
