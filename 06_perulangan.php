@@ -26,12 +26,12 @@ $hitung_mundur = 5;
   <header class="topbar">
     <div class="topbar-inner">
       <span class="brand">KasirQu <small>/ Toko Maju Jaya</small></span>
-      <a class="back" href="index.php">&larr; Menu Latihan</a>
+      <a class="back" id="contoh"href="index.php">&larr; Menu Latihan</a>
     </div>
   </header>
 
   <main class="wrap">
-    <p class="tag">Latihan 6</p>
+    <p class="tag" style="color: #1F3864;">Latihan 6</p>
     <h1>Perulangan: Kerja Berulang Otomatis</h1>
     <p class="lead">Dengan 3 baris kode, PHP bisa mencetak 100 baris untukmu.</p>
 
@@ -132,6 +132,7 @@ foreach ($buah as $b) {
         ?>
       </table>
       <p><span class="pill">Tips</span> Bisa juga pakai kunci array: <code>foreach ($array as $kunci => $nilai)</code></p>
+
     </div>
 
     <div class="task">

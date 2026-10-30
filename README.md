@@ -54,9 +54,23 @@ RewriteRule ^ - [F]
 | `08_latihan_bebas.php` | Tantangan mandiri siswa | P9 |
 | `assets/style.css` | Tampilan (tema navy/oranye) | P9 |
 | `PANDUAN_SISWA.txt` | Panduan singkat untuk siswa | P9 |
+| `template/` | Template sederhana: 2 partial + halaman contoh + form GET/POST | P12-P13 |
 
 Pada P9 setiap latihan masih berdiri sendiri (dibuka langsung dari menu).
 Belum ada database dan belum ada header bersama.
+
+## Template & Form (P12-P13)
+
+Buka: `http://localhost/smk4/kasirqu/template/`
+
+- `partials/header.php` + `partials/footer.php` = layout bersama.
+- `index.php`, `produk.php`, `transaksi.php` = contoh konten.
+- `form.php` = ringkasan GET vs POST.
+- `form_get.php` = contoh form GET; data muncul di URL.
+- `form_post.php` = contoh form POST; data tidak muncul di URL.
+- Semua halaman berada di folder yang sama sehingga `assets/style.css` aman
+  tanpa `base_url()`.
+- Siswa fokus mengedit konten halaman, bukan membedah template.
 
 ## Rencana Pertemuan 10
 

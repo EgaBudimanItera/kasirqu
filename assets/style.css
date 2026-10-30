@@ -52,7 +52,13 @@ a:hover { text-decoration: underline; }
   letter-spacing: .5px;
   margin-bottom: 10px;
 }
-
+#contoh{
+  background: #E8F0FB;
+  border-left: 5px solid #1F3864;
+  border-radius: 0 10px 10px 0;
+  padding: 16px 20px;
+  margin: 20px 0;
+}
 h1 { color: #1F3864; font-size: 30px; margin-bottom: 8px; }
 h2 { color: #1F3864; font-size: 20px; margin: 18px 0 8px; }
 h3 { color: #1F3864; font-size: 16px; margin: 14px 0 6px; }

@@ -26,6 +26,7 @@ $latihan = [
     8 => ["file" => "08_latihan_bebas.php","judul" => "Latihan Bebas",      "desc" => "Tantangan mandiri: bikin programmu sendiri."],
     9 => ["file" => "09_css_dasar.php",   "judul" => "CSS Dasar",           "desc" => "Mempercantik HTML: kenali selector class (.) dan id (#)."],
     10 => ["file" => "10_css_bootstrap.php","judul" => "CSS dengan Bootstrap","desc" => "Pakai CSS siap pakai: card, tombol, grid, dan modal."],
+    11 => ["file" => "template/index.php", "judul" => "Template & Form",     "desc" => "Layout partial + contoh form GET dan POST untuk P12-P13."],
 ];
 
 $jumlah = count($latihan); // count() = menghitung banyaknya isi array.
