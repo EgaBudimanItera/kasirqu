@@ -4,7 +4,7 @@
 // HALAMAN DEPAN aplikasi latihan PHP dasar.
 //
 // Tujuan:
-//   - Menjadi "pintu masuk" ke semua latihan (Latihan 1-12).
+//   - Menjadi "pintu masuk" ke semua latihan (Latihan 1-13).
 //   - Menunjukkan contoh nyata ARRAY (daftar latihan) langsung dipakai
 //     untuk menyusun menu. Jadi array bukan cuma teori.
 //
@@ -28,6 +28,7 @@ $latihan = [
     10 => ["file" => "10_css_bootstrap.php","judul" => "CSS dengan Bootstrap","desc" => "Pakai CSS siap pakai: card, tombol, grid, dan modal."],
     11 => ["file" => "template/index.php", "judul" => "Template & Form",     "desc" => "Layout partial + panduan partial + pengenalan form, komponen input, output, GET/POST (P12-P13)."],
     12 => ["file" => "crud/index.php",     "judul" => "Koneksi Database & CRUD","desc" => "Sambung PHP ke MySQL, CRUD produk, plus panduan koneksi dan CRUD."],
+    13 => ["file" => "crud_latihan/index.php", "judul" => "Latihan CRUD Mandiri","desc" => "Kerangka form siap pakai. Lengkapi sendiri bagian tambah, edit, dan hapus."],
 ];
 
 $jumlah = count($latihan); // count() = menghitung banyaknya isi array.
@@ -53,7 +54,7 @@ $jumlah = count($latihan); // count() = menghitung banyaknya isi array.
     <h1>Selamat Datang di KasirQu</h1>
     <p class="lead">
       Ini halaman depan aplikasi latihan. Ada <strong><?php echo $jumlah; ?></strong> latihan
-      yang bisa kamu buka satu per satu. Mulai dari Latihan 1 sampai selesai, ya!
+      yang bisa kamu buka satu per satu. Mulai dari Latihan 1 sampai Latihan 13, ya!
     </p>
 
     <div class="grid">

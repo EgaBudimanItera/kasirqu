@@ -19,6 +19,7 @@ $halaman = $halaman ?? '';
         <a href="tambah.php" class="<?= $halaman === 'tambah' ? 'active' : '' ?>">Tambah</a>
         <a href="koneksi.php" class="<?= $halaman === 'koneksi' ? 'active' : '' ?>">Koneksi</a>
         <a href="panduan.php" class="<?= $halaman === 'panduan' ? 'active' : '' ?>">Panduan</a>
+        <a href="../crud_latihan/index.php">Latihan</a>
         <a href="../index.php">&larr; Menu Latihan</a>
       </nav>
     </div>
