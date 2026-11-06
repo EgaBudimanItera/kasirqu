@@ -4,7 +4,7 @@
 // HALAMAN DEPAN aplikasi latihan PHP dasar.
 //
 // Tujuan:
-//   - Menjadi "pintu masuk" ke semua latihan (Latihan 1-9).
+//   - Menjadi "pintu masuk" ke semua latihan (Latihan 1-12).
 //   - Menunjukkan contoh nyata ARRAY (daftar latihan) langsung dipakai
 //     untuk menyusun menu. Jadi array bukan cuma teori.
 //
@@ -13,8 +13,8 @@
 
 // Daftar latihan disimpan dalam ARRAY.
 // Tiap latihan punya: file, judul, dan deskripsi singkat.
-// Nanti di Pertemuan 10, menu ini akan dihubungkan ke tiap halaman
-// lewat satu header bersama (partials/header.php).
+// Menu ini menautkan setiap latihan ke file/halaman yang sesuai,
+// termasuk modul template/form (P12-P13) dan CRUD database (P14).
 $latihan = [
     1 => ["file" => "01_halo.php",        "judul" => "Halo, PHP!",          "desc" => "Menampilkan teks dengan echo dan mencampur HTML + PHP."],
     2 => ["file" => "02_variabel.php",    "judul" => "Variabel",            "desc" => "Menyimpan data di kotak berlabel: nama, umur, sekolah."],
@@ -26,7 +26,8 @@ $latihan = [
     8 => ["file" => "08_latihan_bebas.php","judul" => "Latihan Bebas",      "desc" => "Tantangan mandiri: bikin programmu sendiri."],
     9 => ["file" => "09_css_dasar.php",   "judul" => "CSS Dasar",           "desc" => "Mempercantik HTML: kenali selector class (.) dan id (#)."],
     10 => ["file" => "10_css_bootstrap.php","judul" => "CSS dengan Bootstrap","desc" => "Pakai CSS siap pakai: card, tombol, grid, dan modal."],
-    11 => ["file" => "template/index.php", "judul" => "Template & Form",     "desc" => "Layout partial + contoh form GET dan POST untuk P12-P13."],
+    11 => ["file" => "template/index.php", "judul" => "Template & Form",     "desc" => "Layout partial + panduan partial + pengenalan form, komponen input, output, GET/POST (P12-P13)."],
+    12 => ["file" => "crud/index.php",     "judul" => "Koneksi Database & CRUD","desc" => "Sambung PHP ke MySQL, CRUD produk, plus panduan koneksi dan CRUD."],
 ];
 
 $jumlah = count($latihan); // count() = menghitung banyaknya isi array.
@@ -43,7 +44,7 @@ $jumlah = count($latihan); // count() = menghitung banyaknya isi array.
   <header class="topbar">
     <div class="topbar-inner">
       <span class="brand">KasirQu <small>/ Toko Maju Jaya</small></span>
-      <span style="font-size:13px;opacity:.85;">Pertemuan 9</span>
+      <span style="font-size:13px;opacity:.85;">Pertemuan 9-14</span>
     </div>
   </header>
 
@@ -78,6 +79,6 @@ $jumlah = count($latihan); // count() = menghitung banyaknya isi array.
     </div>
   </main>
 
-  <footer class="foot">KasirQu — Pertemuan 9</footer>
+  <footer class="foot">KasirQu — Pertemuan 9-14</footer>
 </body>
 </html>

@@ -27,6 +27,24 @@ require __DIR__ . '/partials/header.php';
 </div>
 
 <div class="card">
+  <h2>Panduan Partial</h2>
+  <p>Pelajari header/footer bersama, cara memanggilnya, dan peta folder template.</p>
+  <a class="btn" href="panduan_partial.php">Baca Panduan Partial</a>
+</div>
+
+<div class="card">
+  <h2>Latihan Form</h2>
+  <p>Materi form dari dasar sampai latihan mandiri:</p>
+  <ul class="steps">
+    <li><a href="form_pengenalan.php">Pengenalan tag dan anatomi form</a></li>
+    <li><a href="form_komponen.php">Komponen input: teks, pilihan, area, tombol</a></li>
+    <li><a href="form_output.php">Output form dan validasi</a></li>
+    <li><a href="form_upload.php">Upload foto/image</a></li>
+    <li><a href="form_latihan.php">Latihan form pemesanan</a></li>
+  </ul>
+</div>
+
+<div class="card">
   <h2>Transaksi Terakhir</h2>
   <table>
     <thead>

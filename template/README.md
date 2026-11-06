@@ -1,8 +1,9 @@
 # Template & Form KasirQu (P12–P13)
 
-Starter kecil di dalam aplikasi **KasirQu**: **2 partial + halaman contoh**.
-Semua halaman berada di folder yang sama, jadi `assets/style.css` langsung
-bekerja tanpa `base_url()` dan tanpa `<base href>`.
+Starter kecil di dalam aplikasi **KasirQu**: **2 partial + halaman contoh +
+submodul pengenalan form + upload foto + panduan partial**. Semua halaman
+berada di folder yang sama, jadi `assets/style.css` langsung bekerja tanpa
+`base_url()` dan tanpa `<base href>`.
 
 ## Buka di browser
 
@@ -24,8 +25,16 @@ kasirqu/template/
 ├── transaksi.php       # contoh array + foreach + total
 ├── form.php            # ringkasan GET vs POST
 ├── form_dasar.php      # form + tabel paling sederhana
+├── form_pengenalan.php # anatomi tag form + demo mini
+├── form_komponen.php   # input teks/angka, radio, checkbox, select, textarea
+├── form_output.php     # validasi + output $_POST + htmlspecialchars
+├── form_upload.php     # upload foto + validasi file
+├── form_latihan.php    # brief latihan Form Pemesanan KasirQu
 ├── form_get.php        # contoh form GET + hasil tangkapan
 ├── form_post.php       # contoh form POST + hasil tangkapan
+├── uploads/            # hasil upload foto
+│   └── index.html      # mencegah daftar file terbuka
+├── panduan_partial.php # panduan header/footer + peta folder
 └── README.md
 ```
 
@@ -45,6 +54,30 @@ kasirqu/template/
 3. Ganti isi konten di antara header dan footer.
 4. Tambah satu link di `partials/header.php`:
    `<a href="pelanggan.php">Pelanggan</a>`.
+
+## Panduan partial header/footer
+
+`panduan_partial.php` menjelaskan:
+
+- isi `partials/header.php` dan `partials/footer.php`;
+- cara memanggil partial dengan `$judul`, `$halaman`, dan `require`;
+- peta folder `template/` dan perbandingannya dengan `crud/`;
+- aturan path `assets/style.css`;
+- menu aktif dan kesalahan umum.
+
+## Submodul pengenalan form
+
+Urutan untuk siswa yang baru pertama kali membuat form:
+
+1. `form_pengenalan.php` — tag `<form>`, `action`, `method`, `label`, `id` vs
+   `name`, dan demo form mini.
+2. `form_komponen.php` — `text`, `email`, `password`, `number`, `date`, radio,
+   checkbox, `select`, `textarea`, dan tombol.
+3. `form_output.php` — membaca `$_POST`, validasi server, `htmlspecialchars`,
+   dan ringkasan data.
+4. `form_upload.php` — upload foto/image: `enctype`, `$_FILES`,
+   `getimagesize()`, `move_uploaded_file()`, dan keamanan file.
+5. `form_latihan.php` — brief + checklist latihan **Form Pemesanan KasirQu**.
 
 ## Form GET vs POST
 

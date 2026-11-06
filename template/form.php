@@ -9,9 +9,28 @@ require __DIR__ . '/partials/header.php';
 <p class="lead">Form adalah cara pengguna mengirim data. Metode GET dan POST menentukan bagaimana data itu dikirim dan di mana data itu muncul.</p>
 
 <div class="card">
+  <h2>Baru: pengenalan form</h2>
+  <p>Belum pernah membuat form? Mulai dari tag dasar, lalu kenali komponen dan cara menampilkan output.</p>
+  <ul class="steps">
+    <li><a href="form_pengenalan.php">1. Tag dan anatomi form</a></li>
+    <li><a href="form_komponen.php">2. Komponen input: teks, pilihan, area, tombol</a></li>
+    <li><a href="form_output.php">3. Output form dan validasi</a></li>
+    <li><a href="form_upload.php">4. Upload foto/image</a></li>
+    <li><a href="form_latihan.php">5. Latihan mandiri</a></li>
+  </ul>
+  <p><a class="btn" href="form_pengenalan.php">Mulai Pengenalan Form</a></p>
+</div>
+
+<div class="card">
   <h2>Mulai dari dasar: form + tabel</h2>
   <p>Sebelum membandingkan GET dan POST, lihat satu halaman yang menggabungkan form sebagai input dan tabel sebagai output.</p>
   <a class="btn" href="form_dasar.php">Buka Form + Tabel Dasar</a>
+</div>
+
+<div class="card">
+  <h2>Lanjutan: simpan ke database</h2>
+  <p>Setelah form POST bisa menangkap data, langkah berikutnya adalah menyimpannya ke MySQL. Buka modul koneksi database dan CRUD produk.</p>
+  <a class="btn" href="../crud/tambah.php">Buka Koneksi Database &amp; CRUD</a>
 </div>
 
 <div class="grid">

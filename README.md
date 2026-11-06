@@ -39,11 +39,11 @@ RewriteRule ^ - [F]
   **contoh berisi komentar** (tidak aktif) — jangan isi aturan `^kasirqu` di
   dalamnya karena akan memblokir kasirqu sendiri.
 
-## Peta File (status Pertemuan 9)
+## Peta File (status Pertemuan 14)
 
 | File | Isi | Pertemuan |
 |---|---|---|
-| `index.php` | Halaman menu, daftar Latihan 1-8 (contoh array + foreach) | P9 |
+| `index.php` | Halaman menu, daftar Latihan 1-12 (contoh array + foreach) | P9-P14 |
 | `01_halo.php` | `echo`, campur HTML + PHP | P9 |
 | `02_variabel.php` | Variabel (`$nama`, `$umur`, ...) | P9 |
 | `03_tipe_data.php` | String, integer, float, boolean, array | P9 |
@@ -52,12 +52,13 @@ RewriteRule ^ - [F]
 | `06_perulangan.php` | `for` / `while` / `foreach` | P9 |
 | `07_mesin_kasir.php` | MOMEN WOW: kasir otomatis (gabungan semua materi) | P9 |
 | `08_latihan_bebas.php` | Tantangan mandiri siswa | P9 |
+| `09_css_dasar.php` | CSS dasar: selector, class, id | P11 |
+| `10_css_bootstrap.php` | CSS siap pakai dengan Bootstrap | P11 |
 | `assets/style.css` | Tampilan (tema navy/oranye) | P9 |
 | `PANDUAN_SISWA.txt` | Panduan singkat untuk siswa | P9 |
-| `template/` | Template sederhana: 2 partial + halaman contoh + form GET/POST | P12-P13 |
-
-Pada P9 setiap latihan masih berdiri sendiri (dibuka langsung dari menu).
-Belum ada database dan belum ada header bersama.
+| `template/` | Template sederhana: 2 partial + halaman contoh + pengenalan form + upload foto + panduan partial + GET/POST | P12-P13 |
+| `config/database.php` | Koneksi MySQLi ke database `db_penjualan` | P14 |
+| `crud/` | Latihan koneksi database + CRUD produk + hub panduan (mysqli) | P14 |
 
 ## Template & Form (P12-P13)
 
@@ -66,20 +67,39 @@ Buka: `http://localhost/smk4/kasirqu/template/`
 - `partials/header.php` + `partials/footer.php` = layout bersama.
 - `index.php`, `produk.php`, `transaksi.php` = contoh konten.
 - `form.php` = ringkasan GET vs POST.
+- `form_dasar.php` = contoh form + tabel dalam satu halaman.
+- `form_pengenalan.php` = anatomi tag form, `id` vs `name`, dan demo mini.
+- `form_komponen.php` = komponen input teks/angka, radio, checkbox, select, textarea.
+- `form_output.php` = validasi server, output `$_POST`, dan `htmlspecialchars`.
+- `form_upload.php` = upload foto/image: `enctype`, `$_FILES`, validasi, dan preview.
+- `form_latihan.php` = brief latihan Form Pemesanan KasirQu.
 - `form_get.php` = contoh form GET; data muncul di URL.
 - `form_post.php` = contoh form POST; data tidak muncul di URL.
+- `panduan_partial.php` = panduan header/footer, cara `require`, dan peta folder.
 - Semua halaman berada di folder yang sama sehingga `assets/style.css` aman
   tanpa `base_url()`.
 - Siswa fokus mengedit konten halaman, bukan membedah template.
 
-## Rencana Pertemuan 10
+## Koneksi Database & CRUD (P14)
 
-Database target: **`penjualan_lengkap`** (dibuat pada Pertemuan 7).
+Buka: `http://localhost/smk4/kasirqu/crud/`
 
-1. Tambah `config/database.php` untuk koneksi MySQLi (database `penjualan_lengkap`).
-2. Tambah `partials/header.php` dan `partials/footer.php` sebagai tampilan bersama.
-3. Gabungkan menu ke halaman `01`-`03` memakai header bersama.
-4. Mulai mengambil data dari database (PHP + MySQL).
+- `config/database.php` = satu koneksi MySQLi untuk semua halaman CRUD.
+- `koneksi.php` = tes koneksi, daftar tabel, dan solusi error.
+- `panduan.php` = hub panduan: partial, koneksi, dan CRUD.
+- `panduan_koneksi.php` = materi koneksi: peletakan file, isi `config/database.php`, dan cara `require`.
+- `panduan_crud.php` = panduan tambah, edit, dan hapus produk.
+- `index.php` = READ: tabel produk + pencarian.
+- `tambah.php` = CREATE: form POST + INSERT.
+- `edit.php` = UPDATE: form + UPDATE.
+- `hapus.php` = DELETE: konfirmasi + DELETE via POST.
+- `setup_produk.sql` = pembuat tabel produk (fallback).
+- Wajib prepared statement, `htmlspecialchars`, dan POST untuk aksi ubah data.
+
+Database target: **`db_penjualan`**. Jika belum ada, impor
+`kasirqu/crud/setup_produk.sql` (membuat database + tabel produk). Materi P7
+lama bisa menyebut `penjualan_lengkap`; untuk lab ini, gunakan nama
+`db_penjualan` agar sama dengan konfigurasi dan proyek akhir `kasirsmk/`.
 
 Catatan: `07_mesin_kasir.php` (alur kasir) akan menjadi cikal bakal fitur transaksi
 pada pertemuan-pertemuan berikutnya.

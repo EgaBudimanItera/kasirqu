@@ -19,6 +19,7 @@ $halaman = $halaman ?? '';
         <a href="produk.php" class="<?= $halaman === 'produk' ? 'active' : '' ?>">Produk</a>
         <a href="transaksi.php" class="<?= $halaman === 'transaksi' ? 'active' : '' ?>">Transaksi</a>
         <a href="form.php" class="<?= $halaman === 'form' ? 'active' : '' ?>">Form</a>
+        <a href="panduan_partial.php" class="<?= $halaman === 'panduan' ? 'active' : '' ?>">Panduan</a>
       </nav>
     </div>
   </header>
