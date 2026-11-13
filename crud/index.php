@@ -18,6 +18,10 @@ if ($cari !== '') {
         $errorTabel = mysqli_error($koneksi);
         $hasil = false;
     } else {
+      //mie ayam jumbo
+      //ayam% = ayam goreng, ayam bakar, ayam geprek
+      //%ayam= mie ayam, soto ayam, ayam bakar
+
         $kataKunci = '%' . $cari . '%';
         mysqli_stmt_bind_param($stmt, 'ss', $kataKunci, $kataKunci);
         mysqli_stmt_execute($stmt);
@@ -37,7 +41,7 @@ if ($cari !== '') {
     }
 }
 
-$daftarProduk = [];
+$daftarProduk = [];// Array kosong untuk menampung data produk dari database ke tabel HTML. Jika tidak ada data, tetap menampilkan tabel kosong.
 if ($hasil) {
     while ($baris = mysqli_fetch_assoc($hasil)) {
         $daftarProduk[] = $baris;
@@ -103,6 +107,7 @@ $status = $_GET['status'] ?? '';
 
 <div class="actions-top">
   <a class="btn" href="tambah.php">+ Tambah Produk</a>
+  <a class="btn btn-secondary" href="transaksi.php">Transaksi</a>
   <a class="btn btn-secondary" href="koneksi.php">Cek Koneksi</a>
   <a class="btn btn-secondary" href="panduan.php">Panduan</a>
 </div>
@@ -148,6 +153,7 @@ $status = $_GET['status'] ?? '';
             <td><code><?= htmlspecialchars($produk['kode_produk']) ?></code></td>
             <td><?= htmlspecialchars($produk['nama_produk']) ?></td>
             <td class="num">Rp <?= number_format((float) $produk['harga_beli'], 0, ',', '.') ?></td>
+            <!-- <td><?=$produk['harga_beli']?></td> -->
             <td class="num">Rp <?= number_format((float) $produk['harga_jual'], 0, ',', '.') ?></td>
             <td class="num"><?= (int) $produk['stok_awal'] ?></td>
             <td>

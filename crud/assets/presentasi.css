@@ -1,0 +1,509 @@
+/* ============================================================
+   kasirqu/crud/assets/presentasi.css
+   Gaya halaman slide P16 (presentasi.php).
+   Palet mengikuti deck: navy #1F3864, oranye #E87D0E.
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.presentasi-body {
+  --tinggi-toolbar: 64px;
+  --tinggi-catatan: 0px;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: #0D1320;
+  color: #F4F6FA;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+body.presentasi-body.catatan-terbuka {
+  --tinggi-catatan: 34vh;
+}
+
+/* ---------- Toolbar ---------- */
+
+.toolbar {
+  position: relative;
+  z-index: 30;
+  height: var(--tinggi-toolbar);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 18px;
+  background: #1F3864;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .35);
+}
+
+.toolbar-brand {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.toolbar-brand:hover {
+  text-decoration: none;
+}
+
+.toolbar-brand small {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #E87D0E;
+  letter-spacing: .4px;
+}
+
+.toolbar-progress {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, .18);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.toolbar-progress-bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: #E87D0E;
+  border-radius: 99px;
+  transition: width .18s ease;
+}
+
+.toolbar-aksi {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: nowrap;
+}
+
+.penghitung {
+  font-size: 13px;
+  font-weight: 600;
+  color: #D7DEEA;
+  min-width: 62px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.tombol {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, .22);
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.tombol:hover {
+  background: rgba(255, 255, 255, .18);
+  text-decoration: none;
+}
+
+.tombol:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.tombol:focus-visible,
+.panah:focus-visible,
+.daftar-isi button:focus-visible {
+  outline: 2px solid #E87D0E;
+  outline-offset: 2px;
+}
+
+.tombol[aria-pressed="true"],
+.tombol[aria-expanded="true"] {
+  background: #E87D0E;
+  border-color: #E87D0E;
+  color: #1F3864;
+}
+
+.tombol-teks {
+  font-size: 12.5px;
+}
+
+/* ---------- Panggung slide ---------- */
+
+.panggung {
+  position: relative;
+  z-index: 10;
+  display: block;
+  width: min(calc(100vw - 132px),
+             calc((100vh - var(--tinggi-toolbar) - var(--tinggi-catatan) - 28px) * 1.7778));
+  margin: 14px auto 0;
+  aspect-ratio: 16 / 9;
+  max-height: calc(100vh - var(--tinggi-toolbar) - var(--tinggi-catatan) - 28px);
+  background: #F4F6FA;
+  border-radius: 6px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, .45);
+  overflow: hidden;
+  transition: width .2s ease;
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.slide.aktif {
+  display: block;
+}
+
+.slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #F4F6FA;
+}
+
+/* ---------- Panah navigasi ---------- */
+
+.panah {
+  position: fixed;
+  top: 50%;
+  z-index: 20;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .22);
+  background: rgba(31, 56, 100, .72);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: .55;
+  transition: opacity .15s ease, background .15s ease;
+}
+
+.panah:hover {
+  opacity: 1;
+  background: #E87D0E;
+  color: #1F3864;
+}
+
+.panah:disabled {
+  opacity: .18;
+  cursor: not-allowed;
+}
+
+.panah-kiri {
+  left: 16px;
+}
+
+.panah-kanan {
+  right: 16px;
+}
+
+/* ---------- Panel catatan pelatih ---------- */
+
+.catatan {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  max-height: var(--tinggi-catatan);
+  background: #111C2E;
+  border-top: 3px solid #E87D0E;
+  transform: translateY(101%);
+  transition: transform .22s ease;
+}
+
+body.catatan-terbuka .catatan {
+  transform: translateY(0);
+}
+
+.catatan-kepala {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+
+.catatan-kepala strong {
+  font-size: 13px;
+  letter-spacing: .3px;
+  color: #E87D0E;
+}
+
+.catatan-petunjuk {
+  flex: 1;
+  font-size: 11.5px;
+  color: #8C97A8;
+}
+
+.catatan-isi {
+  padding: 14px 18px 20px;
+  overflow-y: auto;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: #DCE3EF;
+  white-space: pre-wrap;
+}
+
+.catatan-isi .kosong-catatan {
+  color: #8C97A8;
+  font-style: italic;
+}
+
+/* ---------- Daftar slide ---------- */
+
+.tirai {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  background: rgba(6, 10, 18, .6);
+}
+
+.daftar-slide {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  width: min(380px, 92vw);
+  display: flex;
+  flex-direction: column;
+  background: #131E31;
+  border-left: 1px solid rgba(255, 255, 255, .12);
+  transform: translateX(101%);
+  transition: transform .22s ease;
+}
+
+.daftar-slide.is-open {
+  transform: translateX(0);
+}
+
+.daftar-kepala {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+
+.daftar-kepala strong {
+  font-size: 14px;
+}
+
+.daftar-isi {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 10px 24px;
+  list-style: none;
+  counter-reset: slide;
+}
+
+.daftar-isi li {
+  counter-increment: slide;
+}
+
+.daftar-isi button {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: #C9D3E2;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+}
+
+.daftar-isi button::before {
+  content: counter(slide, decimal-leading-zero);
+  flex: 0 0 24px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #E87D0E;
+  padding-top: 2px;
+}
+
+.daftar-isi button:hover {
+  background: rgba(255, 255, 255, .07);
+  color: #fff;
+}
+
+.daftar-isi button.is-active {
+  background: #E87D0E;
+  color: #1F3864;
+  font-weight: 600;
+}
+
+.daftar-isi button.is-active::before {
+  color: #1F3864;
+}
+
+/* ---------- Halaman fallback ---------- */
+
+.kosong {
+  max-width: 760px;
+  margin: 60px auto;
+  padding: 28px 32px;
+  background: #131E31;
+  border-left: 5px solid #E87D0E;
+  border-radius: 8px;
+  line-height: 1.7;
+}
+
+.kosong h1 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.kosong pre {
+  margin: 14px 0;
+  padding: 12px 14px;
+  background: #0B1424;
+  border-radius: 6px;
+  font-size: 13px;
+  overflow-x: auto;
+}
+
+.kosong code {
+  background: #0B1424;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.kosong a {
+  color: #E87D0E;
+}
+
+/* ---------- Layar kecil ---------- */
+
+@media (max-width: 980px) {
+  body.presentasi-body {
+    --tinggi-toolbar: 104px;
+  }
+
+  .toolbar {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    padding: 8px 12px;
+    height: auto;
+    min-height: var(--tinggi-toolbar);
+  }
+
+  .toolbar-progress {
+    order: 3;
+    flex: 1 0 100%;
+  }
+
+  .toolbar-aksi {
+    flex: 1 0 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .penghitung {
+    min-width: 54px;
+  }
+
+  .panggung {
+    width: calc(100vw - 16px);
+    margin-top: 8px;
+  }
+
+  .panah {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+
+  .panah-kiri {
+    left: 6px;
+  }
+
+  .panah-kanan {
+    right: 6px;
+  }
+
+  .catatan-petunjuk {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toolbar-progress-bar,
+  .catatan,
+  .daftar-slide,
+  .panggung {
+    transition: none;
+  }
+}
+
+/* ---------- Cetak / simpan PDF ---------- */
+
+@media print {
+  @page {
+    size: 297mm 167mm;
+    margin: 0;
+  }
+
+  body.presentasi-body {
+    background: #fff;
+    overflow: visible;
+  }
+
+  .toolbar,
+  .panah,
+  .catatan,
+  .tirai,
+  .daftar-slide {
+    display: none !important;
+  }
+
+  .panggung {
+    display: block;
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+    aspect-ratio: auto;
+  }
+
+  .slide {
+    display: block !important;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .slide:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .slide img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Tanpa JavaScript: semua slide ditampilkan bertumpuk lewat <noscript>. */

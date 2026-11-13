@@ -1,0 +1,205 @@
+{
+  "sumber": "pertemuan-16/Pertemuan_16_Alur_Transaksi.pptx",
+  "lebar": 1920,
+  "tinggi": 1080,
+  "slides": [
+    {
+      "nomor": 1,
+      "judul": "Cover - Pertemuan 16",
+      "berkas": "slide-01.png",
+      "catatan": "COVER (2 menit)\nSapa kelas dan nyalakan semangat: hari ini kita membangun satu transaksi pembelian dari nol sampai stok bertambah. Tegaskan bahwa target bukan menghafal kode, tetapi tahu urutannya: file apa dibuat dulu, file apa di-require, bagian form mana yang mengerjakan apa.\nSemua contoh di deck ini diambil dari folder kasirqu/crud yang sudah mereka pakai. Minta siswa membuka aplikasi di browser dan editor sebelum kita mulai."
+    },
+    {
+      "nomor": 2,
+      "judul": "Peta 240 Menit",
+      "berkas": "slide-02.png",
+      "catatan": "PETA 240 MENIT (2 menit)\nBacakan peta ini cepat, lalu tunjukkan posisi istirahat. Tekankan: 15 menit istirahat benar-benar dipakai, bukan digeser. Pagi untuk memahami konsep dan urutan membuat file; setelah istirahat semua waktu dipakai menyimpan dan praktik.\nSampaikan juga yang TIDAK kita kerjakan hari ini: penjualan. Itu sesi berikutnya, dengan pola yang sama.\nMinta siswa menyiapkan: browser terbuka di kasirqu/crud/transaksi.php, editor, dan satu lembar catatan untuk menulis pertanyaan selama sesi."
+    },
+    {
+      "nomor": 3,
+      "judul": "Target Hari Ini",
+      "berkas": "slide-03.png",
+      "catatan": "TARGET HARI INI (8 menit)\nBacakan lima target, lalu minta setiap siswa menuliskan target nomor berapa yang paling mereka takutkan. Simpan catatan itu; di akhir sesi kita cek ulang.\nPoin penting: target bukan 'hafal kode', tetapi 'nota tersimpan utuh dan stok naik'. Kalau satu baris detail gagal, nota tidak boleh setengah jadi.\nSebutkan penjualan ditunda supaya siswa tidak bertanya ke mana-mana: sesi berikutnya, modul dan helper yang sama dipakai lagi."
+    },
+    {
+      "nomor": 4,
+      "judul": "Kenapa Transaksi Butuh 3 Lapis?",
+      "berkas": "slide-04.png",
+      "catatan": "KONSEP 3 LAPIS (8 menit)\nGunakan analogi nota kertas: lembar atas berisi nomor dan tanggal, lembar tengah berisi daftar barang, lembar belakang berisi kartu stok. Tanya kelas: kalau hanya menyimpan total di kepala nota, apa yang hilang? Jawaban: rincian barang dan kemampuan menghitung ulang.\nTegaskan bahwa stok bukan sekadar angka di produk, tetapi riwayat yang bisa ditelusuri."
+    },
+    {
+      "nomor": 5,
+      "judul": "Peta Tabel yang Dipakai",
+      "berkas": "slide-05.png",
+      "catatan": "PETA TABEL (8 menit)\nJangan menggambar ERD formal lagi; ini pengingat. Tunjuk satu nota dan telusuri: nomor di pembelian, lalu baris di detail_pembelian, lalu baris di stok dengan no_pembelian yang sama.\nDua kotak abu-abu (penjualan) sengaja ditampilkan supaya siswa tahu tabelnya sudah ada, tetapi belum kita pakai. Kodenya dibangun sendiri pada sesi berikutnya.\nTanya: tabel mana yang menyimpan harga saat transaksi? Jawab: detail. Tabel mana yang menyimpan saldo terkini? Jawab: baris terakhir stok.\nIngatkan: tidak ada foreign key fisik di database latihan, jadi relasi dijaga oleh kode."
+    },
+    {
+      "nomor": 6,
+      "judul": "Arah Stok: Masuk & Keluar",
+      "berkas": "slide-06.png",
+      "catatan": "ARAH STOK (6 menit)\nTekankan bahwa tabel stok sudah menyiapkan dua arah sejak awal: jumlah_masuk dan jumlah_keluar. Hari ini hanya kolom masuk yang dipakai.\nTanya: kenapa kolom keluar tidak dihapus saja? Jawaban: sesi berikutnya menjual barang, dan riwayat keluar-masuk harus terlihat berurutan dalam satu tabel.\nIngatkan rumus: saldo_akhir = saldo_awal + jumlah_masuk - jumlah_keluar."
+    },
+    {
+      "nomor": 7,
+      "judul": "Nomor Nota Dibuat Otomatis",
+      "berkas": "slide-07.png",
+      "catatan": "NOMOR NOTA (8 menit)\nTunjukkan bahwa nomor tidak diketik manual. Fungsi mengambil nomor terakhir, membuang karakter non-angka, menambah 1, lalu mengembalikan prefix + 4 digit.\nPertanyaan pemandu: kenapa memakai ORDER BY kolom DESC, bukan ORDER BY tanggal? Jawaban: yang kita butuhkan nomor terbesar, bukan transaksi terbaru.\nSebutkan risiko sederhana: dua kasir menyimpan bersamaan. Di latihan kita abaikan dulu; di aplikasi nyata perlu mekanisme yang lebih kuat."
+    },
+    {
+      "nomor": 8,
+      "judul": "Kepala Nota: Identitas Transaksi",
+      "berkas": "slide-08.png",
+      "catatan": "KEPALA NOTA (8 menit)\nTunjukkan bahwa kepala nota hanya menyimpan identitas: nomor, tanggal, kasir, supplier. Tidak ada total, tidak ada daftar barang. Tegaskan tipe bind_param: s untuk string, i untuk integer.\nTanya: kenapa total tidak disimpan di sini? Jawaban: agar tidak ada dua sumber kebenaran. Kalau detail berubah, total di kepala bisa basi. Di latihan ini detail tidak diedit, tetapi prinsipnya tetap penting.\nMinta siswa menyebutkan dari mana setiap nilai diambil (form, fungsi, atau tabel lain)."
+    },
+    {
+      "nomor": 9,
+      "judul": "Detail Nota: Snapshot Barang",
+      "berkas": "slide-09.png",
+      "catatan": "DETAIL NOTA (10 menit)\nIni slide konsep terpenting. Tunjukkan INSERT detail dan jelaskan bahwa perintah yang sama diulang untuk setiap barang di form, hanya nilainya yang berbeda.\nJelaskan snapshot dengan contoh: hari ini harga 4.200, nota tersimpan 4.200. Besok harga naik 5.000, nota lama tetap 4.200.\nTanya: kalau nama produk tidak disalin, apa masalahnya? Jawaban: nota lama bisa menampilkan nama baru atau nama kosong jika produk dihapus.\nMinta siswa mencatat istilah snapshot."
+    },
+    {
+      "nomor": 10,
+      "judul": "Kartu Stok: Sumber Saldo Terkini",
+      "berkas": "slide-10.png",
+      "catatan": "KARTU STOK (10 menit)\nGambarkan satu baris stok: saldo awal 168, masuk 2, keluar 0, saldo akhir 170. Lalu nota berikutnya untuk barang yang sama: saldo awal 170, masuk 1, keluar 0, saldo akhir 171.\nTanya: kenapa tidak cukup menyimpan satu angka stok di produk? Jawaban: kita kehilangan riwayat, tidak bisa audit, dan sulit mencari kesalahan.\nTunjukkan fallback stok_awal: penting saat produk baru belum punya riwayat."
+    },
+    {
+      "nomor": 11,
+      "judul": "Peta File & Jalur Kerja",
+      "berkas": "slide-11.png",
+      "catatan": "PETA FILE (5 menit)\nBuka kelima file di editor sebelum mulai. Tunjukkan bahwa helper berisi query yang dipakai berulang, jadi logika nomor dan saldo tidak ditulis di setiap halaman.\nMinta siswa mencatat: file form untuk HTML + POST + simpan, file JS untuk tampilan, helper untuk query yang dipakai berulang.\nTegaskan urutan kerja: master dulu, baru selectbox, baru form, baru JS, baru validasi, baru simpan. Jangan melompat ke INSERT.\nSampaikan bahwa tiga file lain (transaksi.php, pembelian.php, pembelian_detail.php) memakai require yang sama; akan dibahas di slide berikutnya."
+    },
+    {
+      "nomor": 12,
+      "judul": "Urutan Membuat File: Pembelian",
+      "berkas": "slide-12.png",
+      "catatan": "URUTAN MEMBUAT FILE (6 menit)\nBacakan urutan ini sambil menunjuk folder di editor. Tekankan bahwa helper dibuat paling awal karena enam fungsi itu dipakai semua halaman; kalau halaman ditulis dulu, akan muncul error 'undefined function'.\nMinta siswa menyalin tabel ini ke buku dan mencentang setiap file yang sudah jadi. Tabel ini yang nanti dipakai di slide checklist.\nTanya: kenapa header.php hanya diubah, bukan dibuat baru? Jawaban: file itu sudah ada sejak P12; kita hanya menambah menu."
+    },
+    {
+      "nomor": 13,
+      "judul": "Rantai require: Urutan yang Benar",
+      "berkas": "slide-13.png",
+      "catatan": "RANTAI REQUIRE (6 menit)\nBuka pembelian_tambah.php di editor dan tunjuk baris 14, 15, 258, 416, 427. Siswa melihat sendiri bahwa require koneksi dan helper ada di atas, sementara header baru dipanggil setelah semua query dan redirect selesai.\nJelaskan tiga halaman lain (transaksi.php, pembelian.php, pembelian_detail.php) memakai pola require yang sama, hanya tanpa baris <script> karena tidak punya form multi-baris.\nTanya: apa akibatnya kalau header.php dipindah ke baris 10? Jawaban: redirect setelah simpan gagal karena HTML sudah terkirim.\nMinta siswa menuliskan rantai ini di buku: database -> helper -> proses -> header -> form -> js -> footer."
+    },
+    {
+      "nomor": 14,
+      "judul": "Alur Pembelian: 8 Langkah",
+      "berkas": "slide-14.png",
+      "catatan": "ALUR PEMBELIAN 8 LANGKAH (8 menit)\nBacakan urutan sambil menunjuk file. Tekankan bahwa langkah 1-6 belum menyentuh database; database baru dibuka di langkah 7.\nTanya: kalau barang ketiga gagal disimpan, apa yang terjadi pada barang pertama? Jawaban: ikut dibatalkan saat rollback.\nMinta siswa membuka pembelian_tambah.php dan mencari komentar alur 1-6 di bagian atas file. Sepuluh slide berikutnya mengikuti urutan ini."
+    },
+    {
+      "nomor": 15,
+      "judul": "Isi Form Pembelian: Bagian demi Bagian",
+      "berkas": "slide-15.png",
+      "catatan": "ISI FORM PER BAGIAN (8 menit)\nJangan menulis kode dulu. Minta siswa membuka pembelian_tambah.php lalu mencari setiap bagian dengan nomor barisnya. Cocokkan dengan tabel.\nPoin penting: kepala nota dan isi nota ada di dalam satu form; template baris sengaja di luar form agar tidak ikut terkirim saat submit.\nTanya: bagian mana yang dikerjakan JavaScript dan mana yang dikerjakan PHP? Jawaban: subtotal/total dan tambah baris dikerjakan JS; validasi akhir dan INSERT dikerjakan PHP.\nMinta siswa menandai satu bagian yang belum mereka pahami; bagian itu dibahas di slide langkah berikutnya."
+    },
+    {
+      "nomor": 16,
+      "judul": "Bentuk Form yang Akan Dibangun",
+      "berkas": "slide-16.png",
+      "catatan": "RANCANGAN FORM (6 menit)\nJangan langsung menulis kode. Tunjukkan dulu bentuk form yang akan dibangun, lalu minta siswa menebak nama field tiap kotak. Cocokkan dengan legenda di kanan.\nTekankan: tiga field kepala nota (tanggal, kasir, supplier), lalu tabel item dengan nama field berakhiran [] agar satu form bisa mengirim banyak baris.\nTanya: mana yang dihitung JavaScript dan mana yang dikirim ke server? Jawaban: subtotal dan total hanya tampilan; yang dikirim kode produk, jumlah, dan harga."
+    },
+    {
+      "nomor": 17,
+      "judul": "Langkah 1-2: Ambil Master + Selectbox",
+      "berkas": "slide-17.png",
+      "catatan": "LANGKAH 1-2 (7 menit)\nTunjukkan tiga helper di transaksi_helper.php. Jelaskan bahwa hasil query diubah menjadi peta (array dengan key id) supaya validasi tidak perlu query ulang.\nLalu buka form: select kasir memakai value id_kasir dan label nama_kasir. Tanya: apa yang dikirim saat submit? Jawaban: id, bukan nama.\nMinta siswa menambahkan satu kasir nonaktif di database, lalu refresh: kasir itu tidak boleh muncul. Ini membuktikan filter status bekerja."
+    },
+    {
+      "nomor": 18,
+      "judul": "Langkah 3: Selectbox Produk per Baris",
+      "berkas": "slide-18.png",
+      "catatan": "LANGKAH 3 (6 menit)\nTunjukkan bahwa option hanya membawa kode sebagai value, sedangkan nama, harga, dan stok disimpan di atribut data-*. JavaScript nanti membaca atribut itu.\nTanya: kenapa nama produk tidak dijadikan value? Jawaban: value harus unik dan pendek; nama bisa berubah dan bisa sama.\nMinta siswa memilih produk di browser, lalu inspect element untuk melihat atribut data-harga dan data-stok pada option yang terpilih."
+    },
+    {
+      "nomor": 19,
+      "judul": "Langkah 4: Form Multi-Baris",
+      "berkas": "slide-19.png",
+      "catatan": "LANGKAH 4 (6 menit)\nTunjukkan pasangan name dan class. Jelaskan: name dipakai PHP saat POST, class dipakai JavaScript untuk mencari elemen. Keduanya harus konsisten.\nTanya: kenapa memakai [] pada name? Jawaban: agar PHP menerima array, satu elemen per baris, bukan menimpa baris sebelumnya.\nMinta siswa menambah dua baris di browser, lalu cek di tab Network bahwa POST berisi kode_produk[] dengan dua nilai."
+    },
+    {
+      "nomor": 20,
+      "judul": "Langkah 5: JavaScript Isi Harga + Subtotal",
+      "berkas": "slide-20.png",
+      "catatan": "LANGKAH 5 (7 menit)\nTelusuri handler change baris demi baris. Tunjukkan bahwa data-harga diambil dari option, lalu dimasukkan ke input harga. Setelah itu perbaruiSubtotal dipanggil.\nTanya: apa yang terjadi kalau produk dikembalikan ke pilihan kosong? Jawaban: harga dikosongkan dan info kembali ke teks awal.\nMinta siswa mengubah jumlah dan harga secara manual: subtotal harus ikut berubah. Ini membuktikan JS menghitung ulang, bukan hanya sekali saat pilih."
+    },
+    {
+      "nomor": 21,
+      "judul": "Langkah 6: JavaScript Total + Tambah Baris",
+      "berkas": "slide-21.png",
+      "catatan": "LANGKAH 6 (7 menit)\nTunjukkan hitungTotal: ambil semua .baris-item, jumlahkan jumlah x harga, lalu tulis ke #total-nota. Setelah itu tambahBaris: clone template, tempel, pasang event.\nTanya: kenapa total tidak dikirim ke server? Jawaban: total bisa dihitung ulang dari detail; mengirim total membuka peluang data tidak cocok.\nMinta siswa menambah tiga baris dan menghapus satu. Total harus tetap benar. Jika tidak, cek class yang dipakai."
+    },
+    {
+      "nomor": 22,
+      "judul": "Langkah 7: Validasi POST",
+      "berkas": "slide-22.png",
+      "catatan": "LANGKAH 7 (7 menit)\nTunjukkan bahwa form mengirim tiga array paralel. PHP membaca per indeks, melewati baris yang benar-benar kosong, lalu memvalidasi tiap baris.\nTanya: kenapa baris kosong tidak langsung dianggap error? Jawaban: siswa boleh menambah baris lalu mengosongkannya; yang penting minimal satu baris valid.\nMinta siswa mencoba jumlah 0, harga negatif, dan produk tidak dipilih. Baca pesan error yang muncul; pastikan tidak ada data yang tersimpan."
+    },
+    {
+      "nomor": 23,
+      "judul": "Langkah 8: Simpan ke Tiga Tabel",
+      "berkas": "slide-23.png",
+      "catatan": "LANGKAH 8 (10 menit)\nJangan bacakan semua baris. Tunjukkan tiga blok: nomor + kepala, foreach detail + stok, commit/rollback. Minta siswa menemukan di mana saldo akhir dihitung.\nTanya: kenapa buat_nomor dipanggil di dalam try? Jawaban: kalau nomor gagal dibuat, transaksi tidak boleh dilanjutkan.\nMinta satu siswa membacakan baris INSERT stok dengan suara keras, lalu tunjukkan bahwa jumlah_keluar = 0 dan no_penjualan = NULL untuk pembelian."
+    },
+    {
+      "nomor": 24,
+      "judul": "Ke Tabel Mana? (Pembelian)",
+      "berkas": "slide-24.png",
+      "catatan": "PETA SIMPAN PEMBELIAN (6 menit)\nTempel matriks ini di papan atau mint siswa menyalinnya. Telusuri satu nota contoh dari atas ke bawah: nomor, kepala, detail, stok.\nTanya: kolom mana yang tidak boleh diambil dari tabel produk saat membaca nota? Jawaban: nama dan harga, karena keduanya snapshot.\nMinta siswa membuka satu nota di phpMyAdmin dan mencocokkan setiap kolom dengan sumber nilainya."
+    },
+    {
+      "nomor": 25,
+      "judul": "Total Selalu Dihitung dari Detail",
+      "berkas": "slide-25.png",
+      "catatan": "TOTAL DARI DETAIL (8 menit)\nTunjukkan query daftar dan jelaskan GROUP BY. Tanya: kenapa LEFT JOIN, bukan INNER JOIN? Jawaban: nota tanpa detail tetap muncul dengan total 0, sehingga tidak 'hilang' dari daftar.\nTekankan: total di nota dan total di daftar dihitung dengan cara yang sama. Tidak ada angka total yang disimpan terpisah, jadi tidak mungkin basi.\nJika siswa bertanya soal performa, jawab singkat: untuk data latihan ini masih ringan; di aplikasi besar bisa ditambah index."
+    },
+    {
+      "nomor": 26,
+      "judul": "Checklist Langkah Membangun",
+      "berkas": "slide-26.png",
+      "catatan": "CHECKLIST MEMBANGUN (10 menit)\nBagikan slide ini sebagai lembar kerja: siswa menyalin sembilan baris ke buku dan mencentang satu per satu selama praktik.\nCara pakai: setiap langkah harus punya bukti yang bisa dilihat, bukan klaim 'sudah bisa'. Contoh: langkah 6 dibuktikan dengan mengubah jumlah lalu melihat total berubah.\nKeliling dan cocokkan centang siswa dengan bukti nyata. Beri tanda khusus untuk langkah 7 dan 8 karena di situ biasanya data setengah jadi muncul.\nDi akhir sesi, checklist ini dikumpulkan bersama catatan refleksi."
+    },
+    {
+      "nomor": 27,
+      "judul": "Demo Pembelian di Browser",
+      "berkas": "slide-27.png",
+      "catatan": "DEMO PEMBELIAN (10 menit)\nLakukan demo 5 menit, lalu siswa meniru 5 menit. Sebelum menyimpan, minta siswa menulis tebakan saldo akhir. Setelah simpan, cocokkan.\nTunjukkan halaman detail dan tabel stok di database. Jika memungkinkan, buka phpMyAdmin atau terminal MySQL untuk memperlihatkan baris baru.\nJangan menghabiskan waktu menjelaskan CSS; fokus pada data yang berubah."
+    },
+    {
+      "nomor": 28,
+      "judul": "Istirahat",
+      "berkas": "slide-28.png",
+      "catatan": "ISTIRAHAT (15 menit)\nPasang timer 15 menit. Jangan memulai sesi kedua sebelum waktu habis, kecuali seluruh kelas sudah siap lebih awal. Gunakan waktu ini untuk berkeliling mengecek siswa yang tertinggal saat bedah langkah.\nSaat kembali, minta siswa membuka pembelian_tambah.php di editor dan browser sekaligus: sesi kedua hampir seluruhnya praktik."
+    },
+    {
+      "nomor": 29,
+      "judul": "Praktik: Bangun Satu Nota",
+      "berkas": "slide-29.png",
+      "catatan": "PRAKTIK (25 menit)\nBagi siswa berpasangan. Satu mengoperasikan, satu mengamati dan mencatat. Setelah 12 menit, tukar peran.\nKeliling dan cocokkan dengan checklist sembilan langkah: selectbox terisi, harga muncul otomatis, total berubah, input kosong ditolak, dan stok naik.\nUntuk MISI 3, pastikan siswa benar-benar menghitung jumlah baris sebelum dan sesudah. Jangan memberi jawaban langsung; tunjukkan baris kode yang relevan.\nSisakan 5 menit terakhir untuk menandai langkah yang belum selesai; itu jadi PR."
+    },
+    {
+      "nomor": 30,
+      "judul": "Momen Wow: Audit Stok Toko Maju Jaya",
+      "berkas": "slide-30.png",
+      "catatan": "MOMEN WOW - AUDIT STOK (13 menit)\nBagi 3-4 tim. Setiap tim mengambil satu nota pembelian dari database, menghitung ulang saldo, lalu mencari ketidakcocokan. Jika data latihan konsisten, minta mereka mencari 'anomali yang mungkin terjadi' dan menjelaskan dampaknya.\nBeri 8 menit kerja, 5 menit presentasi 1 menit per tim. Pemenang bukan yang paling cepat, tetapi yang buktinya paling lengkap.\nTutup dengan pesan: audit stok adalah pekerjaan nyata di toko; data harus bisa dipertanggungjawabkan."
+    },
+    {
+      "nomor": 31,
+      "judul": "Jebakan yang Paling Sering Terjadi",
+      "berkas": "slide-31.png",
+      "catatan": "JEBAKAN (4 menit)\nMinta siswa memilih satu jebakan yang paling mungkin mereka lakukan, lalu tuliskan cara menghindarinya. Bahas dua yang paling relevan dengan hasil praktik tadi.\nTekankan bahwa sebagian besar bug transaksi bukan soal sintaks, tetapi soal urutan dan kelengkapan langkah.\nIngatkan kembali: prepared statement dan htmlspecialchars adalah kebiasaan wajib."
+    },
+    {
+      "nomor": 32,
+      "judul": "Penilaian & Bukti",
+      "berkas": "slide-32.png",
+      "catatan": "PENILAIAN & BUKTI (2 menit)\nBacakan bobot cepat, lalu minta siswa menilai diri sendiri berdasarkan checklist yang sudah dicentang. Setelah itu minta pasangan memberi satu pujian dan satu saran.\nTekankan bukti, bukan klaim. 'Sudah bisa' harus dibuktikan dengan nota dan baris stok.\nSimpan rubrik ini untuk penilaian proyek akhir."
+    },
+    {
+      "nomor": 33,
+      "judul": "Refleksi & Penutup",
+      "berkas": "slide-33.png",
+      "catatan": "PENUTUP (3 menit)\nMinta 3 siswa menjawab satu pertanyaan refleksi masing-masing. Jangan menutup dengan ringkasan panjang; biarkan siswa yang merumuskan.\nSampaikan bahwa sesi berikutnya adalah transaksi penjualan: pola dan helper sama, hanya arah stok yang berbeda. Kodenya sengaja belum dipasang supaya mereka menulis sendiri.\nAkhiri dengan pesan: data yang baik adalah data yang bisa dipertanggungjawabkan."
+    }
+  ]
+}

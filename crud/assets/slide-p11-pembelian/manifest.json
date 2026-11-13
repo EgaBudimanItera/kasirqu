@@ -1,0 +1,91 @@
+{
+  "sumber": "pertemuan-11/Pertemuan_11_Halaman_Pembelian.pptx",
+  "lebar": 1920,
+  "tinggi": 1080,
+  "slides": [
+    {
+      "nomor": 1,
+      "judul": "Cover - Pertemuan 11",
+      "berkas": "slide-01.png",
+      "catatan": "COVER (1 menit)\nBuka dengan pertanyaan: 'Nota pembelian sudah tersimpan, ternyata jumlah barangnya salah. Bisa diedit?' Tampung jawaban.\nSampaikan alur sesi: empat halaman, tiap halaman lihat langkahnya dulu di layar, baru kodenya. Praktik 35 menit di akhir.\nMinta siswa membuka kasirqu/crud/pembelian.php di browser."
+    },
+    {
+      "nomor": 2,
+      "judul": "Peta 120 Menit",
+      "berkas": "slide-02.png",
+      "catatan": "PETA 120 MENIT (1 menit)\nBacakan cepat. Tekankan: algoritma 32 menit, kode 32 menit, praktik 35 menit.\nSampaikan bahwa semua halaman sudah jadi; tugas siswa adalah memahami langkah dan mengujinya, bukan menulis dari nol.\nMinta siswa menyiapkan browser di pembelian.php."
+    },
+    {
+      "nomor": 3,
+      "judul": "Empat Halaman, Satu Alur",
+      "berkas": "slide-03.png",
+      "catatan": "EMPAT HALAMAN (3 menit)\nJelaskan alurnya: daftar -> tambah -> detail -> batal. Tidak ada halaman edit.\nTanya: kenapa tidak ada edit? Jawaban: stok sudah bergerak; koreksi dilakukan dengan membatalkan nota, bukan mengubah angka lama.\nSampaikan empat target hari ini. Praktik nanti memakai daftar ini."
+    },
+    {
+      "nomor": 4,
+      "judul": "Algoritma 1: Halaman Indeks (Daftar)",
+      "berkas": "slide-04.png",
+      "catatan": "ALGORITMA INDEKS (8 menit)\nBacakan enam langkah, satu langkah 40 detik. Jangan buka file.\nDemo di browser: cari 'PB', klik Detail, lalu kembali. Tunjukkan bahwa halaman ini hanya membaca.\nTekankan langkah 2: URL tanpa parameter berarti menampilkan semua nota.\nMinta satu siswa mengulang urutannya lisan sebelum pindah slide."
+    },
+    {
+      "nomor": 5,
+      "judul": "Algoritma 2: Halaman Tambah",
+      "berkas": "slide-05.png",
+      "catatan": "ALGORITMA TAMBAH (8 menit)\nDemo form: isi kepala nota, tambah dua baris, tunjukkan harga terisi otomatis dan total berubah.\nSengaja simpan satu kali dengan isian salah (produk belum dipilih) supaya siswa melihat form kembali dengan pesan error.\nTanya: kalau barang kedua gagal disimpan, apa yang terjadi pada barang pertama? Jawaban: ikut dibatalkan saat rollback."
+    },
+    {
+      "nomor": 6,
+      "judul": "Algoritma 3: Halaman Detail",
+      "berkas": "slide-06.png",
+      "catatan": "ALGORITMA DETAIL (8 menit)\nBuka satu nota dan tunjuk bagian-bagiannya: kepala, tabel barang, total, dampak stok.\nTanya: kenapa total tidak disimpan di kepala nota? Jawaban: supaya tidak ada dua sumber kebenaran dan total tidak bisa basi.\nTunjukkan satu baris di tabel stok dari phpMyAdmin agar siswa melihat kaitannya.\nSampaikan: bagian Dampak ke Stok adalah bukti nota ini benar-benar menggerakkan stok."
+    },
+    {
+      "nomor": 7,
+      "judul": "Algoritma 4: Halaman Batalkan",
+      "berkas": "slide-07.png",
+      "catatan": "ALGORITMA BATAL (8 menit)\nDemo dua kali: satu nota yang aman dibatalkan, satu nota yang ditolak karena stok tidak cukup.\nTunjukkan bahwa setelah batal, di tabel stok ada baris keluar dengan keterangan 'Batal pembelian'.\nTanya: kenapa stoknya dikurangi dulu, bukan langsung hapus nota? Jawaban: supaya saldo stok tetap benar dan jejak auditnya ada."
+    },
+    {
+      "nomor": 8,
+      "judul": "Kode: pembelian.php",
+      "berkas": "slide-08.png",
+      "catatan": "KODE INDEKS (8 menit)\nBuka file dan tunjuk blok sesuai kolom LANGKAH. Jangan bacakan semua baris.\nTunjukkan query dengan LEFT JOIN ke kasir dan supplier, lalu GROUP BY untuk total.\nTanya: kenapa LEFT JOIN, bukan JOIN? Jawaban: nota tetap tampil walau kasir atau suppliernya sudah tidak ada."
+    },
+    {
+      "nomor": 9,
+      "judul": "Kode: pembelian_tambah.php",
+      "berkas": "slide-09.png",
+      "catatan": "KODE TAMBAH (8 menit)\nTunjuk blok 46-254 dan jelaskan tiga INSERT di dalam try-catch.\nTanya: di mana stok masuk ditulis? Jawaban: di loop detail, satu baris stok per barang.\nTunjukkan template baris di 391-414: itu yang dicomot JavaScript saat klik + Tambah Baris."
+    },
+    {
+      "nomor": 10,
+      "judul": "Kode: pembelian_detail.php",
+      "berkas": "slide-10.png",
+      "catatan": "KODE DETAIL (8 menit)\nTunjukkan bahwa ketiga query memakai parameter yang sama: nomor nota dari URL.\nTanya: kalau nomor nota di URL diganti jadi PB-9999, apa yang muncul? Jawaban: pesan nota tidak ditemukan, bukan halaman kosong.\nTekankan snapshot: nama dan harga di detail diambil dari detail_pembelian, bukan dari tabel produk."
+    },
+    {
+      "nomor": 11,
+      "judul": "Kode: pembelian_batal.php",
+      "berkas": "slide-11.png",
+      "catatan": "KODE BATAL (8 menit)\nIni file terpenting hari ini. Tunjuk urutan: koreksi stok -> hapus detail -> hapus nota.\nTanya: apa yang terjadi kalau DELETE dilakukan sebelum stok koreksi? Jawaban: kalau langkah stok gagal, nota sudah hilang dan tidak bisa dikembalikan.\nTunjukkan baris 85-92: keputusan boleh/tidak batal dihitung dari saldo stok sekarang."
+    },
+    {
+      "nomor": 12,
+      "judul": "Praktik: Uji Empat Halaman",
+      "berkas": "slide-12.png",
+      "catatan": "PRAKTIK (35 menit)\nBerpasangan: satu mengoperasikan, satu mencatat bukti (nomor nota, saldo sebelum dan sesudah).\nKeliling dan cek: nomor PB bertambah, total cocok, saldo stok kembali setelah batal.\nMisi bonus: siswa mencari nota yang tidak bisa dibatalkan, lalu menjelaskan alasannya.\nSisakan 5 menit untuk presentasi kilat satu pasangan."
+    },
+    {
+      "nomor": 13,
+      "judul": "Checklist & Penilaian",
+      "berkas": "slide-13.png",
+      "catatan": "CHECKLIST (3 menit)\nMinta siswa menilai diri sendiri, lalu pasangannya memberi satu pujian dan satu saran.\nNomor 7 paling sering diklaim tanpa bukti; periksa langsung baris stok di phpMyAdmin.\nSimpan lembar ini sebagai nilai harian."
+    },
+    {
+      "nomor": 14,
+      "judul": "Refleksi & Penutup",
+      "berkas": "slide-14.png",
+      "catatan": "PENUTUP (2 menit)\nMinta tiga siswa menjawab satu pertanyaan refleksi masing-masing.\nSampaikan PR dan kaitannya dengan sesi penjualan: polanya sama, arah stoknya yang beda.\nTutup dengan pesan: transaksi boleh gagal, tapi stok tidak boleh berbohong."
+    }
+  ]
+}

@@ -58,7 +58,7 @@ RewriteRule ^ - [F]
 | `PANDUAN_SISWA.txt` | Panduan singkat untuk siswa | P9 |
 | `template/` | Template sederhana: 2 partial + halaman contoh + pengenalan form + upload foto + panduan partial + GET/POST | P12-P13 |
 | `config/database.php` | Koneksi MySQLi ke database `db_penjualan` | P14 |
-| `crud/` | Latihan koneksi database + CRUD produk + hub panduan (mysqli) | P14 |
+| `crud/` | Latihan koneksi database + CRUD produk + transaksi + hub panduan (mysqli) | P14-P16 |
 
 ## Template & Form (P12-P13)
 
@@ -101,5 +101,26 @@ Database target: **`db_penjualan`**. Jika belum ada, impor
 lama bisa menyebut `penjualan_lengkap`; untuk lab ini, gunakan nama
 `db_penjualan` agar sama dengan konfigurasi dan proyek akhir `kasirsmk/`.
 
-Catatan: `07_mesin_kasir.php` (alur kasir) akan menjadi cikal bakal fitur transaksi
-pada pertemuan-pertemuan berikutnya.
+## Transaksi Pembelian (P16)
+
+Buka: `http://localhost/smk4/kasirqu/crud/transaksi.php`
+
+- `transaksi.php` = hub transaksi + ringkasan nota.
+- `pembelian.php` / `pembelian_tambah.php` / `pembelian_detail.php` = daftar,
+  form multi-baris, dan detail nota pembelian (barang masuk).
+- `transaksi_helper.php` = `rupiah()`, `saldo_stok_terakhir()`, `buat_nomor()`,
+  serta daftar kasir/supplier/produk.
+- `assets/transaksi.js` = tambah/hapus baris, isi harga otomatis, dan hitung
+  subtotal/total.
+- `panduan_transaksi.php` = algoritma, potongan kode, dan rumus stok.
+
+Pola wajib: validasi dulu, lalu `begin_transaction` → INSERT kepala nota →
+INSERT detail + `stok` → `commit`. Jika satu barang gagal, semua dibatalkan
+(`rollback`).
+
+Catatan: modul **penjualan belum dipasang** di aplikasi. Kodenya disimpan di
+`pertemuan-16/kode-penjualan/` (di luar folder `kasirqu/`) dan akan dibangun
+sendiri oleh siswa pada sesi berikutnya memakai pola yang sama.
+
+Catatan: `07_mesin_kasir.php` (alur kasir) adalah cikal bakal fitur transaksi
+yang sekarang dilengkapi di `crud/`.

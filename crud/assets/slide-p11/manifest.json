@@ -1,0 +1,97 @@
+{
+  "sumber": "pertemuan-11/Pertemuan_11_Update_Delete_Produk.pptx",
+  "lebar": 1920,
+  "tinggi": 1080,
+  "slides": [
+    {
+      "nomor": 1,
+      "judul": "Cover - Pertemuan 11",
+      "berkas": "slide-01.png",
+      "catatan": "COVER (1 menit)\nBuka dengan satu pertanyaan: 'Kalau harga produk salah ketik dan sudah terjual tiga hari, apa yang kamu lakukan?' Tampung dua jawaban, jangan dinilai.\nSampaikan rencana sesi: kita lihat LANGKAHNYA dulu di layar, baru kodenya. Praktik langsung setelah itu.\nMinta siswa membuka kasirqu/crud/index.php di browser."
+    },
+    {
+      "nomor": 2,
+      "judul": "Peta 150 Menit",
+      "berkas": "slide-02.png",
+      "catatan": "PETA 150 MENIT (1 menit)\nBacakan cepat. Tekankan tiga hal: algoritma hanya 18 menit, kode 27 menit, praktik 60 menit.\nSampaikan aturan: file versi jadi hanya dibaca, yang diketik file di crud_latihan.\nMinta siswa menyiapkan dua tab: browser di index.php, editor di crud_latihan/edit.php."
+    },
+    {
+      "nomor": 3,
+      "judul": "Kasus Hari Ini & Target",
+      "berkas": "slide-03.png",
+      "catatan": "KASUS & TARGET (5 menit)\nBahas kasus 2 menit. Arahkan ke kesimpulan: yang diperbaiki harganya, bukan produknya dihapus.\nBacakan empat target. Tekankan dua target pertama: hafal LANGKAH, bukan hafal kode.\nMinta siswa menandai target yang paling sulit; dicek lagi di akhir sesi."
+    },
+    {
+      "nomor": 4,
+      "judul": "Algoritma UPDATE: 6 Langkah di Layar",
+      "berkas": "slide-04.png",
+      "catatan": "ALGORITMA UPDATE (9 menit)\nBacakan enam langkah, satu langkah 40 detik. Jangan buka file sama sekali di slide ini.\nDemo langsung di browser sambil menyebut nomor langkah: 'ini langkah 2, perhatikan URL-nya'.\nSetelah selesai, minta siswa mengulang urutannya lisan tanpa melihat slide. Baru slide kode dibuka.\nKalau waktu mepet, cukup langkah 2 dan 5 yang ditekankan: URL menentukan baris mana yang diubah, tombol simpan yang menjalankan perubahannya."
+    },
+    {
+      "nomor": 5,
+      "judul": "Algoritma DELETE: 6 Langkah di Layar",
+      "berkas": "slide-05.png",
+      "catatan": "ALGORITMA DELETE (9 menit)\nBacakan enam langkah, jangan buka kode. Demo di browser dengan produk yang aman dihapus dan satu produk yang dipakai nota.\nTekankan langkah 4 dan 6: siswa harus bisa menjelaskan KENAPA sistem menolak.\nMinta satu siswa mengulang urutannya lisan. Kalau benar, lanjut ke slide kode."
+    },
+    {
+      "nomor": 6,
+      "judul": "Folder & File yang Dipakai",
+      "berkas": "slide-06.png",
+      "catatan": "FOLDER & FILE (10 menit)\nBuka dua folder berdampingan di editor. Tunjukkan nama file sama, isi beda.\nJelaskan urutan require: koneksi dulu, header belakangan, supaya redirect setelah simpan tidak gagal.\nTanya: kenapa index.php dan tambah.php di latihan tidak punya TODO? Jawaban: sudah dikerjakan pada pertemuan sebelumnya."
+    },
+    {
+      "nomor": 7,
+      "judul": "Contoh Kode: edit.php",
+      "berkas": "slide-07.png",
+      "catatan": "KODE edit.php (10 menit)\nBuka file dan tunjuk tiap blok sesuai kolom LANGKAH. Jangan bacakan semua baris.\nHubungkan dengan slide algoritma: 'ini langkah 2 yang tadi kita lakukan di browser'.\nTanya: kenapa kode produk dikirim lewat input hidden? Jawaban: kode adalah kunci baris; kalau diubah, kita tidak tahu baris mana yang diupdate."
+    },
+    {
+      "nomor": 8,
+      "judul": "Contoh Kode: hapus.php",
+      "berkas": "slide-08.png",
+      "catatan": "KODE hapus.php (9 menit)\nTunjuk blok 44-46 lebih lama: di sinilah aplikasi bertanya 'produk ini masih dipakai?'.\nDemo cepat: buka hapus.php?kode=BRG001, tunjukkan pesan 'Penghapusan diblokir' dan tombol yang tidak muncul.\nTanya: kenapa tombol hapus ada di dalam form POST, bukan link? Jawaban: link bisa dibuka tidak sengaja atau oleh mesin pencari."
+    },
+    {
+      "nomor": 9,
+      "judul": "Tiga Baris yang Wajib Diingat",
+      "berkas": "slide-09.png",
+      "catatan": "TIGA BARIS KUNCI (8 menit)\nBacakan tiga hal ini saja. Semua file edit/hapus bentuknya sama.\nTunjukkan demo WHERE: jalankan UPDATE tanpa WHERE di tabel salinan (atau tunjukkan affected rows) supaya siswa melihat akibatnya tanpa merusak data asli.\nTanya: apa bedanya 'sddis' dengan 'sssss'? Jawaban: tipe data yang dikirim; salah tipe membuat angka tersimpan sebagai 0 atau terpotong."
+    },
+    {
+      "nomor": 10,
+      "judul": "Praktik 1: Isi TODO edit.php",
+      "berkas": "slide-10.png",
+      "catatan": "PRAKTIK 1 (30 menit)\nAturan: versi jadi boleh dibaca 3 menit, lalu tabnya ditutup. Yang dikerjakan hanya crud_latihan/edit.php.\nBerpasangan: satu mengetik, satu memegang daftar TODO. Tukar peran setelah 15 menit.\nKeliling dan cek tiga hal: input terisi dari POST, harga 'abc' ditolak, harga benar-benar berubah di index.php.\nSiswa yang cepat: minta menambah validasi 'harga jual tidak boleh lebih kecil dari harga beli'."
+    },
+    {
+      "nomor": 11,
+      "judul": "Istirahat",
+      "berkas": "slide-11.png",
+      "catatan": "ISTIRAHAT (10 menit)\nPasang timer. Gunakan waktu untuk mengecek siswa yang belum menyelesaikan MISI 1-2.\nSaat kembali, semua siswa membuka crud_latihan/hapus.php."
+    },
+    {
+      "nomor": 12,
+      "judul": "Praktik 2: Isi TODO hapus.php",
+      "berkas": "slide-12.png",
+      "catatan": "PRAKTIK 2 (30 menit)\nUrutan yang disarankan: MISI 1-2 dulu tanpa pengaman, lalu uji hapus BRG001. Nota lama akan kehilangan barangnya - itu bahan diskusi.\nSetelah itu siswa menambahkan pemeriksaan COUNT(*) seperti di crud/hapus.php, lalu mengulang uji: sekarang harus ditolak.\nData uji yang dibuat siswa wajib dihapus di akhir praktik."
+    },
+    {
+      "nomor": 13,
+      "judul": "Nota Hanya Simpan, dan Jebakan Harian",
+      "berkas": "slide-13.png",
+      "catatan": "NOTA & JEBAKAN (8 menit)\nBagian nota: jawab pertanyaan 'kenapa pembelian tidak ada tombol hapus'. Ini keputusan desain, bukan fitur yang belum selesai.\nBagian jebakan: minta siswa memilih satu yang paling mereka takutkan, tulis cara menghindarinya.\nTutup dengan: bug hapus data hampir selalu soal urutan dan kelalaian, bukan sintaks."
+    },
+    {
+      "nomor": 14,
+      "judul": "Checklist & Penilaian",
+      "berkas": "slide-14.png",
+      "catatan": "CHECKLIST & PENILAIAN (4 menit)\nMinta siswa menilai diri sendiri, lalu pasangannya memberi satu pujian dan satu saran.\nCocokkan centang dengan bukti nyata. Nomor 4, 5, dan 8 paling sering diklaim selesai padahal belum.\nSimpan lembar ini sebagai nilai harian."
+    },
+    {
+      "nomor": 15,
+      "judul": "Refleksi & Penutup",
+      "berkas": "slide-15.png",
+      "catatan": "PENUTUP (5 menit)\nMinta tiga siswa menjawab satu pertanyaan refleksi masing-masing. Biarkan mereka yang merumuskan.\nSampaikan PR dan sesi berikutnya: template & partials - header/footer yang tadi dipakai semua halaman.\nTutup dengan pesan: dua tombol ini yang paling berbahaya di aplikasi."
+    }
+  ]
+}

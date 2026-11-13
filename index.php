@@ -4,7 +4,7 @@
 // HALAMAN DEPAN aplikasi latihan PHP dasar.
 //
 // Tujuan:
-//   - Menjadi "pintu masuk" ke semua latihan (Latihan 1-13).
+//   - Menjadi "pintu masuk" ke semua latihan (Latihan 1-14).
 //   - Menunjukkan contoh nyata ARRAY (daftar latihan) langsung dipakai
 //     untuk menyusun menu. Jadi array bukan cuma teori.
 //
@@ -29,6 +29,7 @@ $latihan = [
     11 => ["file" => "template/index.php", "judul" => "Template & Form",     "desc" => "Layout partial + panduan partial + pengenalan form, komponen input, output, GET/POST (P12-P13)."],
     12 => ["file" => "crud/index.php",     "judul" => "Koneksi Database & CRUD","desc" => "Sambung PHP ke MySQL, CRUD produk, plus panduan koneksi dan CRUD."],
     13 => ["file" => "crud_latihan/index.php", "judul" => "Latihan CRUD Mandiri","desc" => "Kerangka form siap pakai. Lengkapi sendiri bagian tambah, edit, dan hapus."],
+    14 => ["file" => "crud/transaksi.php",  "judul" => "Transaksi Pembelian & Penjualan","desc" => "Nota multi-baris, kartu stok, dan cek stok: barang masuk dan barang keluar (P16)."],
 ];
 
 $jumlah = count($latihan); // count() = menghitung banyaknya isi array.
@@ -45,7 +46,7 @@ $jumlah = count($latihan); // count() = menghitung banyaknya isi array.
   <header class="topbar">
     <div class="topbar-inner">
       <span class="brand">KasirQu <small>/ Toko Maju Jaya</small></span>
-      <span style="font-size:13px;opacity:.85;">Pertemuan 9-14</span>
+      <span style="font-size:13px;opacity:.85;">Pertemuan 9-16</span>
     </div>
   </header>
 
@@ -54,7 +55,7 @@ $jumlah = count($latihan); // count() = menghitung banyaknya isi array.
     <h1>Selamat Datang di KasirQu</h1>
     <p class="lead">
       Ini halaman depan aplikasi latihan. Ada <strong><?php echo $jumlah; ?></strong> latihan
-      yang bisa kamu buka satu per satu. Mulai dari Latihan 1 sampai Latihan 13, ya!
+      yang bisa kamu buka satu per satu. Mulai dari Latihan 1 sampai Latihan 14, ya!
     </p>
 
     <div class="grid">
@@ -71,6 +72,20 @@ $jumlah = count($latihan); // count() = menghitung banyaknya isi array.
     </div>
 
     <div class="task">
+      <h3>// SLIDE PERTEMUAN 16</h3>
+      <p>
+        Materi alur transaksi pembelian bisa dibuka langsung di browser tanpa
+        PowerPoint: selectbox master, hitungan JavaScript, validasi POST, dan
+        tabel tujuan. Tombol <strong>Catatan</strong> menampilkan panduan mengajar.
+      </p>
+      <p>
+        <a href="crud/presentasi.php" style="display:inline-block; margin-top:6px; padding:10px 16px; background:#1F3864; color:#fff; border-radius:8px; font-weight:600; text-decoration:none;">
+          Buka Slide Alur Transaksi
+        </a>
+      </p>
+    </div>
+
+    <div class="task">
       <h3>// TUGAS</h3>
       <ol>
         <li>Buka tiap latihan berurutan mulai dari <strong>Latihan 1</strong>.</li>
@@ -80,6 +95,6 @@ $jumlah = count($latihan); // count() = menghitung banyaknya isi array.
     </div>
   </main>
 
-  <footer class="foot">KasirQu — Pertemuan 9-14</footer>
+  <footer class="foot">KasirQu — Pertemuan 9-16</footer>
 </body>
 </html>

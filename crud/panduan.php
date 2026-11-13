@@ -44,6 +44,18 @@ require __DIR__ . '/partials/header.php';
   </div>
 
   <div class="card">
+    <span class="pill">P11</span>
+    <h2>Slide Update &amp; Delete Produk</h2>
+    <p>
+      Slide Pertemuan 11 dalam browser: beda folder <code>crud/</code> dan
+      <code>crud_latihan/</code>, anatomi <code>edit.php</code> &amp;
+      <code>hapus.php</code>, WHERE, validasi, dan pengaman hapus. Catatan
+      pelatih ada di tombol <strong>Catatan</strong>.
+    </p>
+    <a class="btn" href="presentasi_p11.php">Buka Slide P11</a>
+  </div>
+
+  <div class="card">
     <span class="pill">P13</span>
     <h2>Form &amp; Upload Foto</h2>
     <p>
@@ -51,6 +63,39 @@ require __DIR__ . '/partials/header.php';
       <code>$_FILES</code>, validasi gambar, ukuran file, dan keamanan.
     </p>
     <a class="btn" href="../template/form_upload.php">Baca Panduan Upload</a>
+  </div>
+
+  <div class="card">
+    <span class="pill">P11</span>
+    <h2>Slide Halaman Pembelian</h2>
+    <p>
+      Slide Pertemuan 11 bagian pembelian: algoritma empat halaman
+      (indeks, tambah, detail, batalkan) lengkap dengan contoh kode. Catatan
+      pelatih ada di tombol <strong>Catatan</strong>.
+    </p>
+    <a class="btn" href="presentasi_p11_pembelian.php">Buka Slide Pembelian</a>
+  </div>
+
+  <div class="card">
+    <span class="pill">P16</span>
+    <h2>Slide Alur Transaksi</h2>
+    <p>
+      Slide Pertemuan 16 dalam browser: urutan membuat file, rantai
+      <code>require</code>, isi form per bagian, selectbox master, hitungan
+      JavaScript, validasi POST, dan tabel tujuan. Catatan pelatih ada di
+      tombol <strong>Catatan</strong>.
+    </p>
+    <a class="btn" href="presentasi.php">Buka Slide P16</a>
+  </div>
+
+  <div class="card">
+    <span class="pill">P16</span>
+    <h2>Transaksi Pembelian</h2>
+    <p>
+      Alur kepala nota, detail, dan kartu stok: nomor nota otomatis,
+      transaksi database, dan stok masuk.
+    </p>
+    <a class="btn" href="panduan_transaksi.php">Baca Panduan Transaksi</a>
   </div>
 </div>
 
@@ -66,7 +111,8 @@ require __DIR__ . '/partials/header.php';
     <li>Baca panduan upload foto agar paham form file dan <code>$_FILES</code>.</li>
     <li>Baca panduan koneksi agar paham cara PHP masuk ke MySQL.</li>
     <li>Baca panduan CRUD agar paham alur tambah, edit, dan hapus data.</li>
-    <li>Praktikkan langsung di halaman Produk dan Tambah.</li>
+    <li>Baca panduan transaksi agar paham alur pembelian.</li>
+    <li>Praktikkan langsung di halaman Produk, Tambah, dan Transaksi.</li>
   </ol>
 </div>
 

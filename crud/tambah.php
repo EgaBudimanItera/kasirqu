@@ -9,20 +9,22 @@ $nama = '';
 $hargaBeliInput = '';
 $hargaJualInput = '';
 $stokInput = '';
-
+//hanya bagian ini yang berbeda dari index.php, karena index.php tidak ada form tambah produk.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //panggil data dari form POST, lalu trim() untuk menghapus spasi di awal/akhir simpan 
+    // ke variabel. Jika tidak ada, pakai string kosong.
     $kode = strtoupper(trim($_POST['kode_produk'] ?? ''));
     $nama = trim($_POST['nama_produk'] ?? '');
     $hargaBeliInput = trim((string) ($_POST['harga_beli'] ?? ''));
     $hargaJualInput = trim((string) ($_POST['harga_jual'] ?? ''));
     $stokInput = trim((string) ($_POST['stok_awal'] ?? ''));
-
+    //akhir panggil data dari form POST, lalu trim() untuk menghapus spasi di awal/akhir simpan ke variabel. Jika tidak ada, pakai string kosong.
+  //validasi data dari form POST
     if ($kode === '') {
         $error[] = 'Kode produk wajib diisi.';
     } elseif (!preg_match('/^[A-Z0-9-]{2,10}$/', $kode)) {
         $error[] = 'Kode produk 2-10 karakter, hanya huruf, angka, atau tanda minus.';
     }
-
     if ($nama === '') {
         $error[] = 'Nama produk wajib diisi.';
     } elseif (mb_strlen($nama) > 50) {
@@ -43,7 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stokInput === '' || $stokValid === false) {
         $error[] = 'Stok awal harus berupa bilangan bulat 0 atau lebih.';
     }
-
+    //akhir validasi data dari form POST
+    
     if (count($error) === 0) {
         $cek = mysqli_prepare($koneksi, 'SELECT kode_produk FROM produk WHERE kode_produk = ?');
 
@@ -78,6 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mysqli_stmt_bind_param($stmt, 'ssddi', $kode, $nama, $hargaBeli, $hargaJual, $stok);
 
             if (mysqli_stmt_execute($stmt)) {
+              //memindah halaman
                 header('Location: index.php?status=tambah');
                 exit;
             }
@@ -87,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
-
+//akhir bagian berbeda dari index.php, karena index.php tidak ada form tambah produk.
 require __DIR__ . '/partials/header.php';
 ?>
 

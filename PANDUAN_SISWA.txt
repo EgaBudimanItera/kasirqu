@@ -69,10 +69,13 @@ index.php             -> halaman menu (pintu masuk)
 template/             -> template, header/footer, pengenalan form, GET/POST
 template/form_upload.php -> upload foto/image dari form
 template/panduan_partial.php -> panduan header/footer + peta folder
-crud/                 -> koneksi database + CRUD produk (mysqli)
-crud/panduan.php      -> hub panduan partial, koneksi, dan CRUD
+crud/                 -> koneksi database + CRUD produk + transaksi (mysqli)
+crud/panduan.php      -> hub panduan partial, koneksi, CRUD, dan transaksi
 crud/panduan_koneksi.php -> materi koneksi, peletakan file, cara require
 crud/panduan_crud.php -> panduan tambah, edit, hapus produk
+crud/transaksi.php    -> hub pembelian (barang masuk)
+crud/pembelian_tambah.php -> form pembelian multi-baris (barang masuk)
+crud/panduan_transaksi.php -> algoritma nota + rumus stok
 
 ------------------------------------------------------------
 SETELAH SELESAI

@@ -10,15 +10,99 @@ $jumlahProduk = 0;
 $totalStok = 0;
 $stokMenipis = 0;
 
-// BAGIAN 1 - AMBIL DATA
-// TODO: tulis query SELECT ke tabel produk.
-// Jika $cari terisi, gunakan WHERE kode_produk LIKE ? OR nama_produk LIKE ?.
-// Siapkan dengan mysqli_prepare(), bind_param(), execute(), lalu ambil hasilnya.
-// Masukkan setiap baris ke $daftarProduk.
-// Contoh lengkap: ../crud/index.php
+// var_dump($cari); // untuk debugging, hapus setelah yakin $cari sudah benar
+// // = C# === / !== / !=
+// //jika $cari tidak kosong, lakukan pencarian dengan LIKE
+// if ($cari !== ''){
+//   //pencarian dengan LIKE
+//   //siapkan query SELECT dengan WHERE kode_produk LIKE ? OR nama_produk LIKE ?
+//   //gunakan mysqli_prepare(), bind_param(), execute(), lalu ambil hasilnya
+//   //masukkan setiap baris ke $daftarProduk
+//   $stmt = mysqli_prepare($koneksi, "SELECT kode_produk, nama_produk, harga_beli, harga_jual, stok_awal FROM produk WHERE kode_produk LIKE ? OR nama_produk LIKE ?");
+//   if ($stmt) {
+//     $kataKunci = '%' . $cari . '%';
+//     mysqli_stmt_bind_param($stmt, 'ss', $kataKunci, $kataKunci);
+//     mysqli_stmt_execute($stmt);     
+//   }
+//   $hasil = mysqli_stmt_get_result($stmt);
+//   while ($baris = mysqli_fetch_assoc($hasil)) {
+//     $daftarProduk[] = $baris;
+//   }
+//   mysqli_stmt_close($stmt); 
+// }
+// //jika $cari kosong, ambil semua data produk dari database
+// else{
+//   //tampilkan semua data produk
+//   $hasil = mysqli_query($koneksi, "SELECT kode_produk, nama_produk, harga_beli, harga_jual, stok_awal FROM produk");
+//   while ($baris = mysqli_fetch_assoc($hasil)) {
+//     $daftarProduk[] = $baris;     
+//   }
+//   $
+// }
+// // BAGIAN 1 - AMBIL DATA
+// // TODO: tulis query SELECT ke tabel produk.
 
-// BAGIAN 2 - HITUNG STATISTIK
-// TODO: hitung $jumlahProduk, $totalStok, dan $stokMenipis dari $daftarProduk.
+// // Jika $cari terisi, gunakan WHERE kode_produk LIKE ? OR nama_produk LIKE ?.
+// // Siapkan dengan mysqli_prepare(), bind_param(), execute(), lalu ambil hasilnya.
+// // Masukkan setiap baris ke $daftarProduk.
+// // Contoh lengkap: ../crud/index.php
+
+// // BAGIAN 2 - HITUNG STATISTIK
+// // TODO: hitung $jumlahProduk, $totalStok, dan $stokMenipis dari $daftarProduk.
+
+$cari = trim($_GET['cari'] ?? '');
+$errorTabel = '';
+
+if ($cari !== '') {
+    $sql = "SELECT kode_produk, nama_produk, harga_beli, harga_jual, stok_awal
+            FROM produk
+            WHERE kode_produk LIKE ? OR nama_produk LIKE ?
+            ORDER BY kode_produk";
+    $stmt = mysqli_prepare($koneksi, $sql);
+
+    if (!$stmt) {
+        $errorTabel = mysqli_error($koneksi);
+        $hasil = false;
+    } else {
+      //mie ayam jumbo
+      //ayam% = ayam goreng, ayam bakar, ayam geprek
+      //%ayam= mie ayam, soto ayam, ayam bakar
+
+        $kataKunci = '%' . $cari . '%';
+        mysqli_stmt_bind_param($stmt, 'ss', $kataKunci, $kataKunci);
+        mysqli_stmt_execute($stmt);
+        $hasil = mysqli_stmt_get_result($stmt);
+        mysqli_stmt_close($stmt);
+    }
+} else {
+    $hasil = mysqli_query(
+        $koneksi,
+        "SELECT kode_produk, nama_produk, harga_beli, harga_jual, stok_awal
+         FROM produk
+         ORDER BY kode_produk"
+    );
+
+    if (!$hasil) {
+        $errorTabel = mysqli_error($koneksi);
+    }
+}
+
+$daftarProduk = [];// Array kosong untuk menampung data produk dari database ke tabel HTML. Jika tidak ada data, tetap menampilkan tabel kosong.
+if ($hasil) {
+    while ($baris = mysqli_fetch_assoc($hasil)) {
+        $daftarProduk[] = $baris;
+    }
+}
+
+$jumlahProduk = count($daftarProduk);
+$totalStok = 0;
+$stokMenipis = 0;
+foreach ($daftarProduk as $baris) {
+    $totalStok += (int) $baris['stok_awal'];
+    if ((int) $baris['stok_awal'] <= 5) {
+        $stokMenipis++;
+    }
+}
 
 $pesanStatus = [
     'tambah' => ['ok', 'Produk baru berhasil ditambahkan ke database.'],
@@ -71,6 +155,7 @@ require __DIR__ . '/partials/header.php';
 <div class="actions-top">
   <a class="btn" href="tambah.php">+ Tambah Produk</a>
   <a class="btn btn-secondary" href="../crud/index.php">Lihat Versi Contoh</a>
+  <a class="btn btn-secondary" href="../crud/presentasi_p11.php">Slide P11: Update &amp; Delete</a>
 </div>
 
 <div class="card">
