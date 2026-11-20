@@ -1,7 +1,8 @@
-# Koneksi Database & CRUD Produk (KasirQu)
+# Koneksi Database, CRUD Produk & Laporan (KasirQu)
 
-Modul latihan untuk menyambungkan PHP ke MySQL memakai **mysqli**, lalu
-melakukan **Create, Read, Update, Delete** pada tabel `produk`.
+Modul latihan untuk menyambungkan PHP ke MySQL memakai **mysqli**, melakukan
+**Create, Read, Update, Delete** pada tabel `produk`, lalu **membaca** data
+untuk laporan dan mengenal **session** (P17).
 
 ## Buka di browser
 
@@ -39,6 +40,17 @@ kasirqu/
     ├── pembelian_batal.php    # batalkan nota + stok koreksi
     ├── transaksi_helper.php   # rupiah, saldo stok, nomor nota, master
     ├── panduan_transaksi.php  # panduan algoritma pembelian
+    ├── panduan_session.php    # P17: panduan session, role, penjaga halaman
+    ├── panduan_laporan.php    # P17: panduan laporan + cetak + 3 tugas
+    ├── config/auth.php        # P17: penjaga session versi materi
+    ├── login.php              # P17: form login + akun demo
+    ├── proses_login.php       # P17: prepared SELECT + password_verify
+    ├── logout.php             # P17: POST saja, unset kunci, regenerate ID
+    ├── setup_pengguna.sql     # P17: tabel pengguna + 2 akun demo (hash)
+    ├── buat_hash.php          # P17: alat bantu buat hash password (browser)
+    ├── laporan_penjualan.php  # P17 CONTOH: filter, ringkasan, tabel
+    ├── laporan_penjualan_data.php  # P17: helper query bersama layar + cetak
+    ├── laporan_penjualan_cetak.php # P17: halaman cetak resmi (tab baru)
     ├── presentasi.php     # slide P16 langsung di browser
     ├── presentasi_p11.php # slide P11 (update & delete produk)
     ├── setup_produk.sql   # pembuat tabel produk (fallback)
@@ -46,6 +58,7 @@ kasirqu/
     ├── assets/style.css   # tampilan
     ├── assets/transaksi.css  # gaya form transaksi
     ├── assets/transaksi.js   # hitung subtotal/total + tambah baris
+    └── assets/cetak.css      # P17: kertas A4 laporan resmi
     ├── assets/presentasi.css # gaya halaman slide
     ├── assets/presentasi.js  # navigasi slide
     ├── assets/slide-p16/  # gambar slide P16 + manifest.json
@@ -154,6 +167,62 @@ halaman detail). Satu transaksi database:
 Pembatalan **ditolak** kalau `saldo_stok_terakhir` lebih kecil dari isi nota,
 karena berarti barangnya sudah terjual.
 
+## Session & Laporan (P17)
+
+Bagian baru: aplikasi tahu **siapa** yang bekerja (session + role) dan bisa
+menjawab **hasil** kerja (laporan). Penjaga halaman di modul materi **hanya**
+dipasang di halaman laporan, supaya materi P9-P16 tetap terbuka tanpa login.
+
+### Login demo
+
+Impor sekali `kasirqu/crud/setup_pengguna.sql`, lalu buka
+`http://localhost/smk4/kasirqu/crud/login.php`.
+
+| Username | Password | Role | Boleh apa |
+|---|---|---|---|
+| `admin` | `admin123` | admin | semua halaman + laporan |
+| `kasir1` | `kasir123` | kasir | halaman materi, tanpa laporan |
+
+Password disimpan sebagai **hash bcrypt**, bukan teks asli. Untuk membuat atau
+mengganti password, buka
+`http://localhost/smk4/kasirqu/crud/buat_hash.php`, ketik password, salin
+hasil `$2y$...`, lalu tempel ke kolom `password` di SQL. Cara lewat terminal:
+
+```
+php -r "echo password_hash('admin123', PASSWORD_DEFAULT);"
+```
+
+Hasilnya beda setiap kali karena salt; itu normal. Saat login yang
+membandingkan adalah `password_verify()`, bukan `==`. Session diberi kunci
+`$_SESSION['kasirqu']` agar tidak bertabrakan dengan `$_SESSION['kasirsmk']`
+di domain yang sama. Logout memakai **POST** dan hanya meng-`unset` kunci
+aplikasi ini (bukan `session_destroy()`).
+
+### Halaman laporan
+
+```
+http://localhost/smk4/kasirqu/crud/laporan_penjualan.php
+```
+
+Lima bagian yang bisa dibedah bersama siswa: filter tanggal (default bulan
+ini, validasi + tukar tanggal), query agregat `JOIN` + `BETWEEN` + `GROUP BY`
++ `SUM`, kartu ringkasan, tabel per nota dengan footer total, dan tombol cetak.
+Total dihitung dari `detail_penjualan` (snapshot harga), bukan dari kolom
+total kepala nota.
+
+Tombol **Cetak** membuka tab baru:
+`laporan_penjualan_cetak.php?dari=...&sampai=...`. Halaman itu tidak memakai
+`partials/header.php`, jadi navbar/alert/tombol tidak ikut ke kertas. Isinya:
+kop toko, nomor dokumen, waktu + nama pencetak, ringkasan, tabel bernomor,
+kalimat penutup, dan dua tanda tangan. CSS ada di `assets/cetak.css` (A4,
+hitam putih). Query dipindah ke `laporan_penjualan_data.php` supaya angka di
+layar dan di kertas sama. Halaman cetak juga memanggil `wajib_role('admin')`.
+
+Panduan siswa: `panduan_session.php` (analogi gelang masuk, alur login, cara
+membuat hash, dua lapis keamanan, kesalahan umum) dan `panduan_laporan.php` (lima bagian,
+bedah query, alur cetak, petunjuk tiga tugas: pembelian, stok, laba).
+Versi latihan ada di `../crud_latihan/` (laporan + cetak + panduan sendiri).
+
 ## Aturan aman
 
 - Semua query yang memakai input pengguna menggunakan **prepared statement**.
@@ -169,6 +238,11 @@ karena berarti barangnya sudah terjual.
   nyata, gunakan status nonaktif (soft delete) agar riwayat penjualan tetap utuh.
 - File `config/database.php` memakai user `root` tanpa password untuk latihan
   lokal. Jangan pakai konfigurasi ini di server online.
+- Halaman laporan dan halaman cetaknya diawali
+  `require_once __DIR__ . '/config/auth.php';` lalu `wajib_role('admin')`.
+  Menyembunyikan menu saja tidak cukup: URL tetap bisa diketik langsung.
+- Password tidak pernah disimpan atau dibandingkan sebagai teks asli. Pakai
+  `password_hash()` saat membuat akun dan `password_verify()` saat login.
 
 ## Kaitan dengan pertemuan sebelumnya
 
@@ -176,3 +250,5 @@ karena berarti barangnya sudah terjual.
 - P12: header/footer bersama.
 - P13: form GET/POST, `$_GET` dan `$_POST`.
 - P14: koneksi database + CRUD (modul ini).
+- P16: transaksi pembelian (kepala nota, detail, stok).
+- P17: session + role + penjaga halaman, lalu laporan penjualan (modul ini).

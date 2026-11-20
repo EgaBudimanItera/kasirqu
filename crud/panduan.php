@@ -97,6 +97,37 @@ require __DIR__ . '/partials/header.php';
     </p>
     <a class="btn" href="panduan_transaksi.php">Baca Panduan Transaksi</a>
   </div>
+
+  <div class="card">
+    <span class="pill">P17</span>
+    <h2>Session &amp; Login</h2>
+    <p>
+      Kenapa aplikasi perlu mengingat pengguna, cara kerja
+      <code>$_SESSION</code>, penjaga halaman, role admin/kasir, dan logout
+      yang benar.
+    </p>
+    <a class="btn" href="panduan_session.php">Baca Panduan Session</a>
+  </div>
+
+  <div class="card">
+    <span class="pill">P17</span>
+    <h2>Laporan</h2>
+    <p>
+      Lima bagian laporan, query agregat dengan <code>GROUP BY</code> dan
+      <code>BETWEEN</code>, plus petunjuk tiga tugas: pembelian, stok, laba.
+    </p>
+    <a class="btn" href="panduan_laporan.php">Baca Panduan Laporan</a>
+  </div>
+
+  <div class="card">
+    <span class="pill">P17</span>
+    <h2>Contoh Laporan Penjualan</h2>
+    <p>
+      Halaman jadi yang bisa langsung dibuka: filter tanggal, kartu ringkasan,
+      tabel nota, dan tombol cetak. Hanya untuk admin.
+    </p>
+    <a class="btn" href="laporan_penjualan.php">Buka Laporan</a>
+  </div>
 </div>
 
 <div class="actions-top">
@@ -112,7 +143,9 @@ require __DIR__ . '/partials/header.php';
     <li>Baca panduan koneksi agar paham cara PHP masuk ke MySQL.</li>
     <li>Baca panduan CRUD agar paham alur tambah, edit, dan hapus data.</li>
     <li>Baca panduan transaksi agar paham alur pembelian.</li>
-    <li>Praktikkan langsung di halaman Produk, Tambah, dan Transaksi.</li>
+    <li>Baca panduan session agar paham login dan penjaga halaman.</li>
+    <li>Baca panduan laporan agar paham query agregat.</li>
+    <li>Praktikkan langsung di halaman Produk, Tambah, Transaksi, dan Laporan.</li>
   </ol>
 </div>
 

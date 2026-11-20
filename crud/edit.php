@@ -35,7 +35,8 @@ $nama = $produk['nama_produk'] ?? '';
 $hargaBeliInput = $produk ? (string) $produk['harga_beli'] : '';
 $hargaJualInput = $produk ? (string) $produk['harga_jual'] : '';
 $stokInput = $produk ? (string) $produk['stok_awal'] : '';
-
+//batas akhir proses menampilkan di form
+// proses update
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $produk) {
     $nama = trim($_POST['nama_produk'] ?? '');
     $hargaBeliInput = trim((string) ($_POST['harga_beli'] ?? ''));
@@ -73,6 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $produk) {
             'UPDATE produk
              SET nama_produk = ?, harga_beli = ?, harga_jual = ?, stok_awal = ?
              WHERE kode_produk = ?'
+             //update produk set nama_produk = 'apel' , harga_beli=1000
+            //  where kode_produk='90000'
         );
 
         if (!$stmt) {
@@ -90,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $produk) {
         }
     }
 }
+//akhir proses update
 
 require __DIR__ . '/partials/header.php';
 ?>

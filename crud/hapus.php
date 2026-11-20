@@ -30,7 +30,12 @@ if ($kode === '') {
         mysqli_stmt_bind_param($stmt, 's', $kode);
         mysqli_stmt_execute($stmt);
         $hasil = mysqli_stmt_get_result($stmt);
+         
         $produk = mysqli_fetch_assoc($hasil);
+        // var_dump($produk);
+        // var_dump($produk['kode_produk']); 
+        // echo "<hr>";
+
         mysqli_stmt_close($stmt);
 
         if (!$produk) {
@@ -50,8 +55,12 @@ if ($produk) {
         mysqli_stmt_bind_param($stmt, 's', $kode);
         mysqli_stmt_execute($stmt);
         $hasil = mysqli_stmt_get_result($stmt);
+        
+        // var_dump(mysqli_fetch_assoc($hasil));
+        // echo '<hr';
+
         if ($hasil && $baris = mysqli_fetch_assoc($hasil)) {
-            $dipakai = (int) $baris['jumlah'];
+            $dipakai = (int) $baris['jumlah'];//apa nih?
         }
         mysqli_stmt_close($stmt);
     }

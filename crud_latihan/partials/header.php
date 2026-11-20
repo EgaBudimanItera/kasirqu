@@ -17,6 +17,7 @@ $halaman = $halaman ?? '';
       <nav class="menu">
         <a href="index.php" class="<?= $halaman === 'produk' ? 'active' : '' ?>">Produk</a>
         <a href="tambah.php" class="<?= $halaman === 'tambah' ? 'active' : '' ?>">Tambah</a>
+        <a href="laporan_penjualan.php" class="<?= $halaman === 'laporan_penjualan' ? 'active' : '' ?>">Laporan</a>
         <a href="../crud/index.php">Contoh</a>
         <a href="../index.php">&larr; Menu Latihan</a>
       </nav>

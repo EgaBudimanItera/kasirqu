@@ -454,6 +454,100 @@ pre code {
   padding: 24px 20px 36px;
 }
 
+/* ------------------------------------------------------------
+   Identitas pengguna di navbar (P17)
+   ------------------------------------------------------------ */
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.topbar-user .user-name {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.topbar-user .pill {
+  background: rgba(255, 255, 255, .18);
+  color: #fff;
+}
+
+.topbar-user .pill.ok {
+  background: #E87D0E;
+  color: #fff;
+}
+
+.topbar-user .btn {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+/* Blok yang hanya muncul saat dicetak */
+.print-only {
+  display: none;
+}
+
+/* Halaman login */
+.login-page {
+  background: #EEF2F9;
+  min-height: 100vh;
+}
+
+.login-brand {
+  font-size: 30px;
+  font-weight: 700;
+  color: #1F3864;
+  letter-spacing: .5px;
+}
+
+/* ------------------------------------------------------------
+   Cetak laporan: sembunyikan navigasi & tombol, sisakan isi
+   ------------------------------------------------------------ */
+@media print {
+  .topbar,
+  .foot,
+  .btn,
+  .alert,
+  .print-hide {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  .wrap {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .card {
+    border: 1px solid #ccc;
+    box-shadow: none;
+    page-break-inside: avoid;
+  }
+
+  th {
+    background: #1F3864 !important;
+    color: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  td,
+  th {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+}
+
 @media (max-width: 640px) {
   .topbar-inner {
     align-items: flex-start;

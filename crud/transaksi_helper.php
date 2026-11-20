@@ -76,6 +76,7 @@ function buat_nomor($koneksi, string $prefix, string $tabel, string $kolom): str
     }
 
     return $prefix . str_pad((string) $nomor, 4, '0', STR_PAD_LEFT);
+    //EGA0001,EGA0002
 }
 
 function ambil_kasir_aktif($koneksi): array

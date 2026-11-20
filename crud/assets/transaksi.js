@@ -121,17 +121,17 @@
   }
 
   document.addEventListener("DOMContentLoaded", function () {
-    var tabel = document.getElementById("tabel-item");
+    // var tabel = document.getElementById("tabel-item");
     var tombol = document.getElementById("btn-tambah-baris");
-
+    console.log('ini error disini');
     if (tabel) {
-      var baris = tabel.querySelectorAll(".baris-item");
+      var baris = tabel.querySelectorAll(".baris-itema  ");
 
       for (var i = 0; i < baris.length; i++) {
         pasangBaris(baris[i]);
       }
     }
-
+    
     if (tombol) {
       tombol.addEventListener("click", tambahBaris);
     }
